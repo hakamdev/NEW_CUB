@@ -22,7 +22,12 @@ t_bool	is_read_complete(t_cub *cub)
 
 void	read_resolution(t_cub *cub, t_str *parts)
 {
-
+	if (cub->checker.resolution)
+		ft_perror("Error: Duplicate Key (R)!", ft_clean(cub, ERROR));
+	if (ft_strlen_2d(parts) > 3)
+		ft_perror("Error: Additional Agruments in Resolution!", ft_clean(cub, ERROR));
+	
+	
 }
 
 void	handle_keys(t_cub *cub, t_str line, t_str *parts) {
@@ -46,7 +51,8 @@ void	handle_keys(t_cub *cub, t_str line, t_str *parts) {
 		ft_perror("Error: Unrecognizable Elements!", ft_clean(cub, ERROR));
 }
 
-void	handle_map(t_cub *cub, t_str line) {
+void	handle_map(t_cub *cub, t_str line)
+{
 
 }
 

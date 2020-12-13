@@ -15,25 +15,23 @@
 int		ft_atoi(const char *str)
 {
 	int		i;
-	unsigned long long	r;
+	long	r;
 	char	*s;
 
 	i = 0;
 	r = 0;
 	s = (char *)str;
-	while (*s > 0 && *s <= ' ')
-	{
-		if (*s == 27)
-			return (ERROR);
+	while ((*s > 0 && *s <= ' ' && *s != 27))
 		s++;
-	}
 	if (*s == '+')
 		s++;
 	while (s[i] >= '0' && s[i] <= '9')
-		r = r * 10 + (s[i++] - '0');
-	if (!(*s > 0 && *s <= ' '))
+	{
+		if (r < 2147483647)
+			r = r * 10 + (s[i] - '0');
+		i++;
+	}
+	if (!(s[i] >= 0 && s[i] <= ' '))
 		return (ERROR);
-	if (r > 2147483647L)
-		return (2147483647);
-	return (r);
+	return ((r > 2147483647) ? 2147483647 : r);
 }
