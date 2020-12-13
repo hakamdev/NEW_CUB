@@ -26,8 +26,10 @@ void	read_resolution(t_cub *cub, t_str *parts)
 		ft_perror("Error: Duplicate Key (R)!", ft_clean(cub, ERROR));
 	if (ft_strlen_2d(parts) > 3)
 		ft_perror("Error: Additional Agruments in Resolution!", ft_clean(cub, ERROR));
-	
-	
+	if (IS_ERROR(cub->cnvs.width = ft_atoi(parts[1])))
+		ft_perror("Error: Invalid Value for Resolution (Width)!", ft_clean(cub, ERROR));
+	if (IS_ERROR(cub->cnvs.height = ft_atoi(parts[2])))
+		ft_perror("Error: Invalid Value for Resolution (Height)!", ft_clean(cub, ERROR));
 }
 
 void	handle_keys(t_cub *cub, t_str line, t_str *parts) {
