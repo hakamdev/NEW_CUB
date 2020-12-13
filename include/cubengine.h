@@ -189,6 +189,17 @@ typedef struct	s_lvldata
 	t_level		level[10];
 	t_checkpnt	checkps[20];
 }				t_lvldata;
+typedef struct	s_read_check
+{
+	t_bool	resolution;
+	t_bool	txt_north;
+	t_bool	txt_south;
+	t_bool	txt_west;
+	t_bool	txt_east;
+	t_bool	txt_sprite;
+	t_bool	clr_ceiling;
+	t_bool	clr_floor;
+}				t_read_check;
 typedef struct	s_cub
 {
 	void		*window;
@@ -213,6 +224,7 @@ typedef struct	s_cub
 	t_bool		screenshot;
 	t_level		level[10];
 	t_checkpnt	checkps[20];
+	t_read_check checker;
 }				t_cub;
 
 t_bool			g_end_splsh;
@@ -287,7 +299,7 @@ t_bool	is_sprite(t_cub *cub, float x, float y);
 int		ft_atoi(const char *str);
 void	ft_free(char **s);
 int		get_next_line(int fd, char **line);
-int		ft_output(t_str msg, int retcode);
+// int		ft_output(t_str msg, int retcode);
 void	ft_putnbr(int n);
 char	**ft_split(const char *ss, char c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -297,6 +309,10 @@ size_t	ft_strlen(const char *s);
 t_bool	ft_strnchar(const char *str, char c);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strsub(char **s, unsigned int start, size_t n);
+int		ft_perror(t_str msg, int return_code);
+int		ft_clean(t_cub *cub, int return_code);
+
+
 int		init_splash_screen(t_cub *cub);
 
 // int		init_checkpoints(t_cub *cub);
