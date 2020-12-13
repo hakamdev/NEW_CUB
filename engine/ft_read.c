@@ -28,9 +28,10 @@ void	read_resolution(t_cub *cub, t_str *parts)
 		ft_perror("Error: Missing Agruments for Resolution!", ft_clean(cub, ERROR));
 	if (ft_strlen_2d(parts) > 3)
 		ft_perror("Error: Additional Agruments for Resolution!", ft_clean(cub, ERROR));
-	if (IS_ERROR(cub->cnvs.width = ft_atoi(parts[1])))
+	if (IS_ERROR(cub->cnvs.width = ft_atoi(parts[1])) || cub->cnvs.width == 0)
 		ft_perror("Error: Invalid Value for Resolution (Width)!", ft_clean(cub, ERROR));
-	if (IS_ERROR(cub->cnvs.height = ft_atoi(parts[2])))
+
+	if (IS_ERROR(cub->cnvs.height = ft_atoi(parts[2])) || cub->cnvs.height == 0)
 		ft_perror("Error: Invalid Value for Resolution (Height)!", ft_clean(cub, ERROR));
 	cub->checker.resolution = true;
 }
