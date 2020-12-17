@@ -36,10 +36,10 @@ void read_resolution(t_cub *cub, t_str *parts)
 	cub->checker.resolution = true;
 }
 
-void extract_texture_path(t_str line, t_str *path)
+t_str extract_texture_path(t_str line)
 {
-	int		start;
-	int		end;
+	int start;
+	int end;
 
 	start = 0;
 	end = ft_strlen(line) - 1;
@@ -50,12 +50,30 @@ void extract_texture_path(t_str line, t_str *path)
 	while (end > 0 && line[end] == ' ')
 		end--;
 	line[end + 1] = '\0';
-	*path = ft_strdup(&line[start]);
+	return (ft_strdup(&line[start]));
 }
 
-void read_texture(t_cub *cub, t_str line, t_str which)
+t_str to_lowercase(t_str str)
 {
-	
+	int i;
+	t_str new_str;
+
+	i = 0;
+	new_str = ft_strdup(str);
+	while (new_str && new_str[i])
+		if (new_str[i] >= 'A' && new_str[i] <= 'Z')
+			new_str[i] = new_str[i] + 32;
+	return (new_str);
+}
+
+void read_north_texture(t_cub *cub, t_str line, t_str which)
+{
+	t_str path;
+
+	if (cub->checker.txt_north)
+		ft_perror("Error: Duplicate key (NO) !", ft_clean(cub, ERROR));
+	path = extract_texture_path(line);
+	check_filename(cub, path, ".xpm");
 }
 
 void handle_keys(t_cub *cub, t_str line, t_str *parts)
@@ -103,17 +121,17 @@ int process_line(t_cub *cub, t_str line)
 
 int read_file(t_cub *cub, t_str filename)
 {
-	int	fd;
+	int fd;
 	int read_num;
 	t_str line;
-	t_bool	is_first_loop;
+	t_bool is_first_loop;
 
 	read_num = 0;
 	is_first_loop = true;
 	init_read_check(cub);
 	if (IS_ERROR(fd = open(filename, O_RDONLY)))
 		ft_perror("Error: Failed to open file for reading.\nIs the filename correct?",
-		ft_clean(cub, ERROR));
+				  ft_clean(cub, ERROR));
 	while ((read_num = get_next_line(fd, &line)) > 0)
 	{
 		if (is_first_loop && read_num == 0)
@@ -128,5 +146,3 @@ int read_file(t_cub *cub, t_str filename)
 		ft_perror("Error: Failed to close file after read!", ft_clean(cub, ERROR));
 	return (SUCCESS);
 }
-
-

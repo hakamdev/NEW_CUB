@@ -322,6 +322,7 @@ int		init_splash_screen(t_cub *cub);
 char	value_at_pos(t_cub *cub, int x, int y);
 
 // NEW =================================
+void check_filename(t_cub *cub, t_str filename, t_str extension);
 int read_file(t_cub *cub, t_str filename);
 
 
