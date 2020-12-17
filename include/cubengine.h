@@ -5,6 +5,7 @@
 # include <math.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
 
 // Test
 # include <stdio.h>
@@ -18,7 +19,7 @@
 # define IS_SUCESS(f)	 ((f) == SUCCESS)
 # define TILE_SIZE		 64
 # define FOV			 RAD(60.0F)
-# define CUBTITLE		 "CUB3D BY HAKAM"
+# define CUBTITLE		 "Cub3D"
 # define ERROR			 -1
 # define SUCCESS		 0
 # define MAX_READ_CONFIG 9
@@ -299,7 +300,6 @@ t_bool	is_sprite(t_cub *cub, float x, float y);
 int		ft_atoi(const char *str);
 void	ft_free(char **s);
 int		get_next_line(int fd, char **line);
-// int		ft_output(t_str msg, int retcode);
 void	ft_putnbr(int n);
 char	**ft_split(const char *ss, char c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -318,8 +318,12 @@ int		init_splash_screen(t_cub *cub);
 // int		init_checkpoints(t_cub *cub);
 // int		init_levels(t_cub *cub);
 // int		update_level(t_cub *cub);
-
 // void	render_sprite(t_cub *cub, int id, int off[2], int spr);
 char	value_at_pos(t_cub *cub, int x, int y);
+
+// NEW =================================
+int read_file(t_cub *cub, t_str filename);
+
+
 
 #endif
