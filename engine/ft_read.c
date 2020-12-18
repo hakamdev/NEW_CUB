@@ -53,27 +53,48 @@ t_str extract_texture_path(t_str line)
 	return (ft_strdup(&line[start]));
 }
 
-t_str to_lowercase(t_str str)
-{
-	int i;
-	t_str new_str;
-
-	i = 0;
-	new_str = ft_strdup(str);
-	while (new_str && new_str[i])
-		if (new_str[i] >= 'A' && new_str[i] <= 'Z')
-			new_str[i] = new_str[i] + 32;
-	return (new_str);
-}
-
-void read_north_texture(t_cub *cub, t_str line, t_str which)
+void read_north_texture(t_cub *cub, t_str line)
 {
 	t_str path;
 
 	if (cub->checker.txt_north)
 		ft_perror("Error: Duplicate key (NO) !", ft_clean(cub, ERROR));
 	path = extract_texture_path(line);
-	check_filename(cub, path, ".xpm");
+	check_filename(cub, path, ".xpm", false);
+	cub->txt[NORTH].path = path;
+}
+
+void read_south_texture(t_cub *cub, t_str line)
+{
+	t_str path;
+
+	if (cub->checker.txt_south)
+		ft_perror("Error: Duplicate key (SO) !", ft_clean(cub, ERROR));
+	path = extract_texture_path(line);
+	check_filename(cub, path, ".xpm", false);
+	cub->txt[SOUTH].path = path;
+}
+
+void read_west_texture(t_cub *cub, t_str line)
+{
+	t_str path;
+
+	if (cub->checker.txt_west)
+		ft_perror("Error: Duplicate key (WE) !", ft_clean(cub, ERROR));
+	path = extract_texture_path(line);
+	check_filename(cub, path, ".xpm", false);
+	cub->txt[WEST].path = path;
+}
+
+void read_south_texture(t_cub *cub, t_str line)
+{
+	t_str path;
+
+	if (cub->checker.txt_south)
+		ft_perror("Error: Duplicate key (SO) !", ft_clean(cub, ERROR));
+	path = extract_texture_path(line);
+	check_filename(cub, path, ".xpm", false);
+	cub->txt[SOUTH].path = path;
 }
 
 void handle_keys(t_cub *cub, t_str line, t_str *parts)
