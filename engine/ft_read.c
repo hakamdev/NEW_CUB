@@ -36,7 +36,7 @@ void read_resolution(t_cub *cub, t_str *parts)
 	cub->checker.resolution = true;
 }
 
-t_str extract_texture_path(t_str line)
+t_str extract_value(t_str line)
 {
 	int start;
 	int end;
@@ -62,7 +62,7 @@ void read_north_texture(t_cub *cub, t_str line)
 
 	if (cub->checker.txt_north)
 		ft_perror("Error: Duplicate key (NO) !", ft_clean(cub, ERROR));
-	path = extract_texture_path(line);
+	path = extract_value(line);
 	check_filename(cub, path, ".xpm", false);
 	cub->txt[NORTH].path = path;
 	cub->checker.txt_north = true;
@@ -78,7 +78,7 @@ void read_south_texture(t_cub *cub, t_str line)
 
 	if (cub->checker.txt_south)
 		ft_perror("Error: Duplicate key (SO) !", ft_clean(cub, ERROR));
-	path = extract_texture_path(line);
+	path = extract_value(line);
 	check_filename(cub, path, ".xpm", false);
 	cub->txt[SOUTH].path = path;
 	cub->checker.txt_south = true;
@@ -94,7 +94,7 @@ void read_west_texture(t_cub *cub, t_str line)
 
 	if (cub->checker.txt_west)
 		ft_perror("Error: Duplicate key (WE) !", ft_clean(cub, ERROR));
-	path = extract_texture_path(line);
+	path = extract_value(line);
 	check_filename(cub, path, ".xpm", false);
 	cub->txt[WEST].path = path;
 	cub->checker.txt_west = true;
@@ -110,7 +110,7 @@ void read_east_texture(t_cub *cub, t_str line)
 
 	if (cub->checker.txt_east)
 		ft_perror("Error: Duplicate key (EA) !", ft_clean(cub, ERROR));
-	path = extract_texture_path(line);
+	path = extract_value(line);
 	check_filename(cub, path, ".xpm", false);
 	cub->txt[EAST].path = path;
 	cub->checker.txt_east = true;
@@ -126,13 +126,76 @@ void read_sprite(t_cub *cub, t_str line)
 
 	if (cub->checker.txt_sprite)
 		ft_perror("Error: Duplicate key (S) !", ft_clean(cub, ERROR));
-	path = extract_texture_path(line);
+	path = extract_value(line);
 	check_filename(cub, path, ".xpm", false);
 	cub->txt[SPR].path = path;
 	cub->checker.txt_sprite = true;
 	if (IS_ERROR(fd = open(path, O_RDONLY)))
 		ft_perror("Error: The path to (S) sprite is not valid!", ft_clean(cub, ERROR));
 	close(fd);
+}
+
+int	 countchar(const t_str str, char c)
+{
+	int		i;
+	int		ccount;
+
+	if (!str)
+		return (0);
+	i = -1;
+	ccount = 0;
+	while (str[++i])
+		if (str[i] == c)
+			ccount++;
+	return (ccount);
+}
+
+void read_ceiling_color(t_cub *cub, t_str line)
+{
+	t_str	*parts;
+	t_color	color;
+	const t_str color_values = extract_value(line);
+
+	if (cub->checker.clr_ceiling)
+		ft_perror("Error: Duplicate key (C) !", ft_clean(cub, ERROR));
+	if (countchar(color_values, ',') > 2)
+		ft_perror("Error: Badly delimitered RGB Values!", ft_clean(cub, ERROR));
+	parts = ft_split(color_values, ',');
+	if (ft_strlen_2d(parts) != 3)
+		ft_perror("Error: 3 R,G,B Values are required for (C)!", ft_clean(cub, ERROR));
+	if (IS_ERROR(color.r = ft_atoi(parts[0])) || !(color.r >= 0 && color.r <= 255))
+		ft_perror("Error: Invalid (Red) Value for (C)!", ft_clean(cub, ERROR));
+	if (IS_ERROR(color.g = ft_atoi(parts[1])) || !(color.g >= 0 && color.g <= 255))
+		ft_perror("Error: Invalid (Green) Value for (C)!", ft_clean(cub, ERROR));
+	if (IS_ERROR(color.b = ft_atoi(parts[2])) || !(color.b >= 0 && color.b <= 255))
+		ft_perror("Error: Invalid (Blue) Value for (C)!", ft_clean(cub, ERROR));
+	cub->color[CIEL] = color;
+	cub->checker.clr_ceiling = true;
+	free_2d(parts);
+}
+
+void read_floor_color(t_cub *cub, t_str line)
+{
+	t_str	*parts;
+	t_color	color;
+	const t_str color_values = extract_value(line);
+
+	if (cub->checker.clr_floor)
+		ft_perror("Error: Duplicate key (F) !", ft_clean(cub, ERROR));
+	if (countchar(color_values, ',') > 2)
+		ft_perror("Error: Badly delimitered RGB Values!", ft_clean(cub, ERROR));
+	parts = ft_split(color_values, ',');
+	if (ft_strlen_2d(parts) != 3)
+		ft_perror("Error: 3 R,G,B Values are required for (F)!", ft_clean(cub, ERROR));
+	if (IS_ERROR(color.r = ft_atoi(parts[0])) || !(color.r >= 0 && color.r <= 255))
+		ft_perror("Error: Invalid (Red) Value for (F)!", ft_clean(cub, ERROR));
+	if (IS_ERROR(color.g = ft_atoi(parts[1])) || !(color.g >= 0 && color.g <= 255))
+		ft_perror("Error: Invalid (Green) Value for (F)!", ft_clean(cub, ERROR));
+	if (IS_ERROR(color.b = ft_atoi(parts[2])) || !(color.b >= 0 && color.b <= 255))
+		ft_perror("Error: Invalid (Blue) Value for (F)!", ft_clean(cub, ERROR));
+	cub->color[FLOOR] = color;
+	cub->checker.clr_floor = true;
+	free_2d(parts);
 }
 
 void handle_keys(t_cub *cub, t_str line, t_str *parts)
@@ -150,9 +213,9 @@ void handle_keys(t_cub *cub, t_str line, t_str *parts)
 	else if (IS_SUCESS(ft_strncmp(parts[0], "S", 2)))
 		read_sprite(cub, line);
 	else if (IS_SUCESS(ft_strncmp(parts[0], "F", 2)))
-		;
+		read_floor_color(cub, line);
 	else if (IS_SUCESS(ft_strncmp(parts[0], "C", 2)))
-		;
+		read_ceiling_color(cub, line);
 	else
 		ft_perror("Error: Unreconizable keys! ", ft_clean(cub, ERROR));
 	free_2d(parts);
