@@ -31,7 +31,11 @@ int		ft_atoi(const char *str)
 			r = r * 10 + (s[i] - '0');
 		i++;
 	}
-	if (!(s[i] >= 0 && s[i] <= ' '))
-		return (ERROR);
+	while (s[i])
+	{
+		if (!(s[i] >= 0 && s[i] <= ' '))
+			return (ERROR);
+		i++;
+	}
 	return ((r > 2147483647) ? 2147483647 : r);
 }

@@ -30,7 +30,6 @@ void read_resolution(t_cub *cub, t_str *parts)
 		ft_perror("Error: Additional Agruments for Resolution!", ft_clean(cub, ERROR));
 	if (IS_ERROR(cub->cnvs.width = ft_atoi(parts[1])) || cub->cnvs.width == 0)
 		ft_perror("Error: Invalid Value for Resolution (Width)!", ft_clean(cub, ERROR));
-
 	if (IS_ERROR(cub->cnvs.height = ft_atoi(parts[2])) || cub->cnvs.height == 0)
 		ft_perror("Error: Invalid Value for Resolution (Height)!", ft_clean(cub, ERROR));
 	cub->checker.resolution = true;
@@ -158,11 +157,11 @@ void read_ceiling_color(t_cub *cub, t_str line)
 
 	if (cub->checker.clr_ceiling)
 		ft_perror("Error: Duplicate key (C) !", ft_clean(cub, ERROR));
-	if (countchar(color_values, ',') > 2)
-		ft_perror("Error: Badly delimitered RGB Values!", ft_clean(cub, ERROR));
 	parts = ft_split(color_values, ',');
 	if (ft_strlen_2d(parts) != 3)
 		ft_perror("Error: 3 R,G,B Values are required for (C)!", ft_clean(cub, ERROR));
+	if (countchar(color_values, ',') > 2)
+		ft_perror("Error: Badly delimitered RGB Values!", ft_clean(cub, ERROR));
 	if (IS_ERROR(color.r = ft_atoi(parts[0])) || !(color.r >= 0 && color.r <= 255))
 		ft_perror("Error: Invalid (Red) Value for (C)!", ft_clean(cub, ERROR));
 	if (IS_ERROR(color.g = ft_atoi(parts[1])) || !(color.g >= 0 && color.g <= 255))
@@ -182,11 +181,11 @@ void read_floor_color(t_cub *cub, t_str line)
 
 	if (cub->checker.clr_floor)
 		ft_perror("Error: Duplicate key (F) !", ft_clean(cub, ERROR));
-	if (countchar(color_values, ',') > 2)
-		ft_perror("Error: Badly delimitered RGB Values!", ft_clean(cub, ERROR));
 	parts = ft_split(color_values, ',');
 	if (ft_strlen_2d(parts) != 3)
 		ft_perror("Error: 3 R,G,B Values are required for (F)!", ft_clean(cub, ERROR));
+	if (countchar(color_values, ',') > 2)
+		ft_perror("Error: Badly delimitered RGB Values!", ft_clean(cub, ERROR));
 	if (IS_ERROR(color.r = ft_atoi(parts[0])) || !(color.r >= 0 && color.r <= 255))
 		ft_perror("Error: Invalid (Red) Value for (F)!", ft_clean(cub, ERROR));
 	if (IS_ERROR(color.g = ft_atoi(parts[1])) || !(color.g >= 0 && color.g <= 255))
@@ -216,7 +215,7 @@ void handle_keys(t_cub *cub, t_str line, t_str *parts)
 		read_floor_color(cub, line);
 	else if (IS_SUCESS(ft_strncmp(parts[0], "C", 2)))
 		read_ceiling_color(cub, line);
-	else
+	else if (!(line && *line == '\0'))
 		ft_perror("Error: Unreconizable keys! ", ft_clean(cub, ERROR));
 	free_2d(parts);
 }
@@ -247,24 +246,29 @@ int read_file(t_cub *cub, t_str filename)
 	if (IS_ERROR(fd = open(filename, O_RDONLY)))
 		ft_perror("Error: Failed to open file for reading.\nIs the filename correct?",
 				  ft_clean(cub, ERROR));
+	int x = 1;
 	while ((read_num = get_next_line(fd, &line)) > 0)
 	{
-		if (is_first_loop && read_num == 0)
-			ft_perror("Error: It appears to be an Empty file!", ft_clean(cub, ERROR));
 		is_first_loop = false;
 		process_line(cub, line);
 	}
+	if (is_first_loop == true && read_num == 0 && !*line)
+		ft_perror("Error: It appears to be an Empty file!", ft_clean(cub, ERROR));
 	if (IS_ERROR(read_num))
 		ft_perror("Error: Failed to read from file!", ft_clean(cub, ERROR));
 	process_line(cub, line);
 	if (IS_ERROR(close(fd)))
 		ft_perror("Error: Failed to close file after read!", ft_clean(cub, ERROR));
 	///////////////////////
-	printf("TEXTURE: \n");
-	printf("NO = |%s|\n", cub->txt[NORTH].path);
-	printf("SO = |%s|\n", cub->txt[SOUTH].path);
-	printf("WE = |%s|\n", cub->txt[WEST].path);
-	printf("EA = |%s|\n", cub->txt[EAST].path);
+	//printf("TEXTURES: \n");
+	//printf("NO = |%s|\n", cub->txt[NORTH].path);
+	//printf("SO = |%s|\n", cub->txt[SOUTH].path);
+	//printf("WE = |%s|\n", cub->txt[WEST].path);
+	//printf("EA = |%s|\n", cub->txt[EAST].path);
+	//printf("S = |%s|\n\n", cub->txt[SPR].path);
+	//printf("COLORS: \n");
+	// printf("F = |R:%d|G:%d|B:%d|\n", cub->color[FLOOR].r, cub->color[FLOOR].g, cub->color[FLOOR].b);
+	// printf("C = |R:%d|G:%d|B:%d|\n", cub->color[CIEL].r, cub->color[CIEL].g, cub->color[CIEL].b);
 	///////////////////////
 
 	return (SUCCESS);
