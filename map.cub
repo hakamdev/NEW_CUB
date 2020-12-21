@@ -1,14 +1,13 @@
-R 1000 4545
 
+R 1280 800
 
+NO ./assets/wood.xpm
 
-
-NO ./assets/wood.xp
-SO ./assets/redbrick.xpm
+       SO           ./assets/redbrick.xpm        
 WE ./assets/stone.xpm
-
-    EA ./assets/mossy.xpm
-
+EA ./assets/mossy.xpm
 S ./assets/sp2.xpm
 F 86,12,23
+C 10,151,17
+1111111100000
 C 10,151,17

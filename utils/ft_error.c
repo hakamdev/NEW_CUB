@@ -14,6 +14,6 @@ int ft_perror(t_str msg, int return_code)
 	write(2, "Error: ", 7);
 	write(2, msg, len);
 	write(2, "\n\n", 2);
-	write(2, "\033[0m", 10);
+	// write(2, "\033[0m", 5);
 	exit(return_code);
 }

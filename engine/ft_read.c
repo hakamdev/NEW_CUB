@@ -217,7 +217,7 @@ void handle_keys(t_cub *cub, t_str line, t_str *parts)
 		read_floor_color(cub, line);
 	else if (IS_SUCESS(ft_strncmp(parts[0], "C", 2)))
 		read_ceiling_color(cub, line);
-	else if (ft_strnchar("012NEWS ", *line))
+	else if (ft_strnchar("012NEWS ", *line) && !is_read_complete(cub))
 		ft_perror("Missing/Missplaced keys!", ft_clean(cub, ERROR));
 	else
 		ft_perror("Unreconizable keys!", ft_clean(cub, ERROR));
@@ -226,6 +226,7 @@ void handle_keys(t_cub *cub, t_str line, t_str *parts)
 
 void handle_map(t_cub *cub, t_str line)
 {
+	handle_keys(cub, line, ft_split(line, ' '));
 }
 
 int process_line(t_cub *cub, t_str line)
@@ -264,15 +265,15 @@ int read_file(t_cub *cub, t_str filename)
 	if (IS_ERROR(close(fd)))
 		ft_perror("Failed to close file after read!", ft_clean(cub, ERROR));
 	///////////////////////
-	//printf("TEXTURES: \n");
-	//printf("NO = |%s|\n", cub->txt[NORTH].path);
-	//printf("SO = |%s|\n", cub->txt[SOUTH].path);
-	//printf("WE = |%s|\n", cub->txt[WEST].path);
-	//printf("EA = |%s|\n", cub->txt[EAST].path);
-	//printf("S = |%s|\n\n", cub->txt[SPR].path);
-	//printf("COLORS: \n");
-	// printf("F = |R:%d|G:%d|B:%d|\n", cub->color[FLOOR].r, cub->color[FLOOR].g, cub->color[FLOOR].b);
-	// printf("C = |R:%d|G:%d|B:%d|\n", cub->color[CIEL].r, cub->color[CIEL].g, cub->color[CIEL].b);
+	printf("TEXTURES: \n");
+	printf("NO = |%s|\n", cub->txt[NORTH].path);
+	printf("SO = |%s|\n", cub->txt[SOUTH].path);
+	printf("WE = |%s|\n", cub->txt[WEST].path);
+	printf("EA = |%s|\n", cub->txt[EAST].path);
+	printf("S = |%s|\n\n", cub->txt[SPR].path);
+	printf("COLORS: \n");
+	printf("F = |R:%d|G:%d|B:%d|\n", cub->color[FLOOR].r, cub->color[FLOOR].g, cub->color[FLOOR].b);
+	printf("C = |R:%d|G:%d|B:%d|\n", cub->color[CIEL].r, cub->color[CIEL].g, cub->color[CIEL].b);
 	///////////////////////
 
 	return (SUCCESS);
