@@ -3,7 +3,7 @@ R 1000 4545
 
 
 
-NO ./assets/wood.xpm
+NO ./assets/wood.xp
 SO ./assets/redbrick.xpm
 WE ./assets/stone.xpm
 

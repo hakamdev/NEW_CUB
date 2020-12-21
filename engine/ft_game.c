@@ -30,27 +30,27 @@ void check_filename(t_cub *cub, t_str fname, t_str ext, t_bool case_sens)
     }
     free(lower_str);
     if (IS_SUCESS(ft_strncmp(ext, ".cub", 4)))
-        ft_perror("Error: Config file should be of type (.cub) !",
+        ft_perror("Config file should be of type (.cub) !",
                   ft_clean(cub, ERROR));
     else
-        ft_perror("Error: Texture/Sprite file should be of type (.xpm) !",
+        ft_perror("Texture/Sprite file should be of type (.xpm) !",
                   ft_clean(cub, ERROR));
 }
 
 void check_second_arg(t_cub *cub, t_str arg)
 {
     if (IS_SUCESS(ft_strncmp(arg, "--save", 7)))
-        ft_perror("Error: Second Argument is not corrent!",
+        ft_perror("Second Argument is not corrent!",
                   ft_clean(cub, ERROR));
 }
 
 void check_arguments(t_cub *cub, int ac, t_str *av)
 {
     if (ac < 2)
-        ft_perror("Error: Config (.cub) file is required for the game to run!",
+        ft_perror("Config (.cub) file is required for the game to run!",
                   ft_clean(cub, ERROR));
     if (ac > 3)
-        ft_perror("Error: No more than 2 Arguments are allowed!",
+        ft_perror("No more than 2 Arguments are allowed!",
                   ft_clean(cub, ERROR));
     check_filename(cub, av[1], ".cub", true);
     if (ac == 3)
