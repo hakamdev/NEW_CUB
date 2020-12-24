@@ -61,5 +61,6 @@ int main(int ac, t_str *av)
 {
     t_cub cub;
     check_arguments(&cub, ac, av);
+	init_cub(&cub);
     read_file(&cub, av[1]);
 }

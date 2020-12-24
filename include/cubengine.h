@@ -317,7 +317,6 @@ int		ft_clean(t_cub *cub, int return_code);
 
 
 // int		init_splash_screen(t_cub *cub);
-
 // int		init_checkpoints(t_cub *cub);
 // int		init_levels(t_cub *cub);
 // int		update_level(t_cub *cub);
@@ -325,8 +324,8 @@ int		ft_clean(t_cub *cub, int return_code);
 char	value_at_pos(t_cub *cub, int x, int y);
 
 void check_filename(t_cub *cub, t_str filename, t_str extension, t_bool case_sens);
-int read_file(t_cub *cub, t_str filename);
-
-
+void read_file(t_cub *cub, t_str filename);
+void check_map(t_cub *cub);
+void	init_cub(t_cub *cub);
 
 #endif

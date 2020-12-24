@@ -203,27 +203,26 @@ void read_floor_color(t_cub *cub)
 void read_map(t_cub *cub) {
 	int		i;
 	t_map	*tmap;
-	
+
 	cub->checker.is_map = true;
 	if (cub->map == NULL)
 	{
 		if(!(cub->map = malloc(1 * sizeof(t_map))))
-		return (exit_error(cub, "Error: Failed to allocate memory!"));
-		cub->map[0].row = cub->line;
+			ft_perror("Error: Failed to allocate memory!", ft_clean(cub, ERROR));
+		cub->map[0].row = ft_strdup(cub->line);
 		cub->map[0].columns = ft_strlen(cub->line);
 		cub->rows_nb = 1;
-		return (SUCCESS);
+		return ;
 	}
 	i = -1;
 	tmap = cub->map;
 	if(!(cub->map = malloc(++(cub->rows_nb) * sizeof(t_map))))
-		return (exit_error(cub, "Error: Failed to allocate memory!"));
+		ft_perror("Error: Failed to allocate memory!", ft_clean(cub, ERROR));
 	while (++i < cub->rows_nb - 1)
 		cub->map[i] = tmap[i];
-	cub->map[i].row = cub->line;
+	cub->map[i].row = ft_strdup(cub->line);
 	cub->map[i].columns = ft_strlen(cub->line);
 	free(tmap);
-	return (SUCCESS);
 }
 
 void handle_keys(t_cub *cub)
@@ -262,7 +261,7 @@ void process_line(t_cub *cub)
 	free_2d(cub->parts);
 }
 
-int read_file(t_cub *cub, t_str filename)
+void read_file(t_cub *cub, t_str filename)
 {
 	int fd;
 	int read_num;
@@ -285,6 +284,7 @@ int read_file(t_cub *cub, t_str filename)
 	if (IS_ERROR(read_num))
 		ft_perror("Failed to read from file!", ft_clean(cub, ERROR));
 	process_line(cub);
+	check_map(cub);
 	if (IS_ERROR(close(fd)))
 		ft_perror("Failed to close file after read!", ft_clean(cub, ERROR));
 	///////////////////////
@@ -301,7 +301,8 @@ int read_file(t_cub *cub, t_str filename)
 	printf("COLORS: \n");
 	printf("F = |R:%d|G:%d|B:%d|\n", cub->color[FLOOR].r, cub->color[FLOOR].g, cub->color[FLOOR].b);
 	printf("C = |R:%d|G:%d|B:%d|\n\n", cub->color[CIEL].r, cub->color[CIEL].g, cub->color[CIEL].b);
+	printf("MAP: \n");
+	for (int i = 0; i < cub->rows_nb; i++)
+		printf("%02d |%s|\n", i, cub->map[i].row);
 	///////////////////////
-
-	return (SUCCESS);
 }
