@@ -24,6 +24,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (j < len2)
 		*(ss + i++) = *((char *)(s2 + j++));
 	*(ss + i) = '\0';
-	ft_free(&s1);
+	ft_free(s1);
 	return (ss);
 }

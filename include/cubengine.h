@@ -25,23 +25,25 @@
 # define MAX_READ_CONFIG 9
 # define WIN_WIDTH		 cub->cnvs.width
 # define WIN_HEIGHT		 cub->cnvs.height
+# define MAX_WIDTH		 2256
+# define MAX_HEIGHT		 1300
 
 # define NORTH	0
 # define SOUTH	1
 # define WEST	2
 # define EAST	3
 # define SPR	4
-# define CP		5
-# define HUD	6
-# define SPLSH	7
+// # define CP		5
+// # define HUD	6
+// # define SPLSH	7
 
-# define A 0
-# define B 1
-# define C 2
-# define D 3
-# define E 4
-# define F 5
-# define G 6
+// # define A 0
+// # define B 1
+// # define C 2
+// # define D 3
+// # define E 4
+// # define F 5
+// # define G 6
 
 # define CIEL  	0
 # define FLOOR 	1
@@ -49,8 +51,8 @@
 # define X 		0
 # define Y 		1
 
-# define EXT_CUB 0
-# define EXT_XPM 1
+// # define EXT_CUB 0
+// # define EXT_XPM 1
 
 # define EV_KEY_PRESSED		2
 # define EV_KEY_RELEASED	3
@@ -170,26 +172,26 @@ typedef struct	s_map
 	t_str	row;
 	int		columns;
 }				t_map;
-typedef struct	s_checkpnt
-{
-	char		name;
-	float		x;
-	float		y;
-}				t_checkpnt;
-typedef struct	s_level
-{
-	t_checkpnt  start;
-	t_checkpnt	end;
-}				t_level;
-typedef struct	s_lvldata
-{
-	char		current_cp;
-	char		last_cp;
-	int			cp_nb;
-	int			lvl_nb;
-	t_level		level[10];
-	t_checkpnt	checkps[20];
-}				t_lvldata;
+// typedef struct	s_checkpnt
+// {
+// 	char		name;
+// 	float		x;
+// 	float		y;
+// }				t_checkpnt;
+// typedef struct	s_level
+// {
+// 	t_checkpnt  start;
+// 	t_checkpnt	end;
+// }				t_level;
+// typedef struct	s_lvldata
+// {
+// 	char		current_cp;
+// 	char		last_cp;
+// 	int			cp_nb;
+// 	int			lvl_nb;
+// 	t_level		level[10];
+// 	t_checkpnt	checkps[20];
+// }				t_lvldata;
 typedef struct	s_read_check
 {
 	t_bool	resolution;
@@ -200,6 +202,7 @@ typedef struct	s_read_check
 	t_bool	txt_sprite;
 	t_bool	clr_ceiling;
 	t_bool	clr_floor;
+	t_bool	is_map;
 }				t_read_check;
 typedef struct	s_cub
 {
@@ -215,6 +218,8 @@ typedef struct	s_cub
 	char		lastcpn;
 	t_str		fname;
 	t_str		errno;
+	t_str		line;
+	t_str		*parts;
 	t_map		*map;
 	t_sprite	*spr;
 	t_ray		*ray;
@@ -223,8 +228,6 @@ typedef struct	s_cub
 	t_img		txt[8];
 	t_color		color[2];
 	t_bool		screenshot;
-	t_level		level[10];
-	t_checkpnt	checkps[20];
 	t_read_check checker;
 }				t_cub;
 
@@ -298,7 +301,7 @@ t_bool	is_wall(t_cub *cub, float x, float y);
 t_bool	is_sprite(t_cub *cub, float x, float y);
 //
 int		ft_atoi(const char *str);
-void	ft_free(char **s);
+void	ft_free(char *s);
 int		get_next_line(int fd, char **line);
 void	ft_putnbr(int n);
 char	**ft_split(const char *ss, char c);
@@ -313,7 +316,7 @@ int		ft_perror(t_str msg, int return_code);
 int		ft_clean(t_cub *cub, int return_code);
 
 
-int		init_splash_screen(t_cub *cub);
+// int		init_splash_screen(t_cub *cub);
 
 // int		init_checkpoints(t_cub *cub);
 // int		init_levels(t_cub *cub);

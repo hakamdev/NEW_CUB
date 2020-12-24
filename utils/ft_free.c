@@ -1,10 +1,10 @@
 #include "../include/cubengine.h"
 
-void	ft_free(char **s)
+void	ft_free(char *s)
 {
-	if (s && *s)
+	if (s)
 	{
-		free(*s);
-		*s = NULL;
+		free(s);
+		s = NULL;
 	}
 }

@@ -35,6 +35,6 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *s);
 char	*ft_strsub(char **s, unsigned int start, size_t n);
-void	ft_free(char **s);
+void	ft_free(char *s);
 
 #endif

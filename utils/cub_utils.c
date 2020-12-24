@@ -6,7 +6,7 @@ int		free_2d(t_str *str)
 
 	i = 0;
 	while (str[i] != NULL)
-		free(str[i++]);
+		ft_free(str[i++]);
 	free(str);
 	return (SUCCESS);
 }

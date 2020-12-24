@@ -43,8 +43,8 @@ static int	ft_handle_nl(char **v_line, char **v_temp, char **v_rest)
 			EXIT(ERR);
 		if (!(*v_rest = ft_strdup(&v_temp[0][nl_index + 1])))
 			EXIT(ERR);
-		ft_free(&v_addup);
-		ft_free(v_temp);
+		ft_free(v_addup);
+		ft_free(*v_temp);
 		EXIT(1);
 	}
 	EXIT(INULL);
@@ -58,7 +58,7 @@ static int	ft_handle_rest(char **v_line, char **v_temp, char **v_rest)
 	{
 		if (ft_find_index(*v_rest, NL) > ERR)
 		{
-			ft_free(v_temp);
+			ft_free(*v_temp);
 			*v_temp = *v_rest;
 			if ((ret = ft_handle_nl(v_line, v_temp, v_rest)) != INULL)
 				EXIT(ret);
@@ -67,7 +67,7 @@ static int	ft_handle_rest(char **v_line, char **v_temp, char **v_rest)
 		{
 			if (!(*v_line = ft_strjoin(*v_line, *v_rest)))
 				EXIT(ERR);
-			ft_free(v_rest);
+			ft_free(*v_rest);
 		}
 	}
 	EXIT(INULL);
@@ -98,6 +98,6 @@ int			get_next_line(int fd, char **line)
 			EXIT(ERR);
 	}
 	if (!sread)
-		ft_free(&temp);
+		ft_free(temp);
 	EXIT(EXIT_CODE(sread));
 }
