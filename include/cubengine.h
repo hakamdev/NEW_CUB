@@ -327,5 +327,7 @@ void check_filename(t_cub *cub, t_str filename, t_str extension, t_bool case_sen
 void read_file(t_cub *cub, t_str filename);
 void check_map(t_cub *cub);
 void	init_cub(t_cub *cub);
+void		check_camera(t_cub *cub);
+void		check_all(t_cub *cub);
 
 #endif

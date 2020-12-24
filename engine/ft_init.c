@@ -44,9 +44,3 @@ void		init_mlx(t_cub *cub)
 }
 
 
-
-
-
-
-
-

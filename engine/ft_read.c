@@ -284,9 +284,11 @@ void read_file(t_cub *cub, t_str filename)
 	if (IS_ERROR(read_num))
 		ft_perror("Failed to read from file!", ft_clean(cub, ERROR));
 	process_line(cub);
-	check_map(cub);
+	check_all(cub);
 	if (IS_ERROR(close(fd)))
 		ft_perror("Failed to close file after read!", ft_clean(cub, ERROR));
+
+
 	///////////////////////
 	write(1, "\033[0;32m", 8);
 	printf("RES: \n");

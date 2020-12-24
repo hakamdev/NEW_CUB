@@ -33,3 +33,9 @@ void		check_map(t_cub *cub)
 		}
 	}
 }
+
+void		check_all(t_cub *cub)
+{
+	check_map(cub);
+	check_camera(cub);
+}
