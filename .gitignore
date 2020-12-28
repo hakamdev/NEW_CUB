@@ -1,3 +1,5 @@
 Cub3D
 .vscode/
 Cub3D.dSYM/
+.DS_Store
+*/.DS_Store
