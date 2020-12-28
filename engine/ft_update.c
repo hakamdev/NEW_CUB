@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:53:02 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 18:13:50 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/28 18:25:11 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,13 @@ void update_rendering_sprites(t_cub *cub)
 	{
 		cub->spr[i].dist = get_distance(cub, cub->spr[i].x, cub->spr[i].y);
 		cub->spr[i].ang = atan2f(cub->spr[i].y - cub->cam.y, cub->spr[i].x - cub->cam.x);
-		float corr_dist = cub->spr[i].dist * cosf(cub->spr[i].ang - cub->cam.ang);
+		// float corr_dist = cub->spr[i].dist * cosf(cub->spr[i].ang - cub->cam.ang);
 		cub->spr[i].ang = normalize_spr(cub, cub->spr[i].ang);
-		cub->spr[i].scale =  WIN_WIDTH * (float)TILE_SIZE / corr_dist;//cub->spr[i].dist; //(TILE_SIZE / cub->spr[i].dist * pplane_dist);
+		cub->spr[i].scale =  WIN_WIDTH * (float)TILE_SIZE / cub->spr[i].dist;
+		//cub->spr[i].dist; //(TILE_SIZE / cub->spr[i].dist * pplane_dist);
 		cub->spr[i].offy = (WIN_HEIGHT / 2.0F) - (cub->spr[i].scale / 2);
-	
-		cub->spr[i].offx = ((DEG(cub->spr[i].ang) - DEG(cub->cam.ang)) * WIN_WIDTH) / 60 + ((WIN_WIDTH / 2.0F) - (cub->spr[i].scale / 2));
+		cub->spr[i].offx = ((DEG(cub->spr[i].ang) - DEG(cub->cam.ang)) * WIN_WIDTH)
+		/ 60 + ((WIN_WIDTH / 2.0F) - (cub->spr[i].scale / 2));
 	}
 	sort_sprites(cub);
 	i = -1;

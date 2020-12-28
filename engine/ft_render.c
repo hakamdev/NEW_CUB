@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:51:11 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 17:51:16 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/28 18:21:04 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ void    render_wall_stripe(t_cub *cub, t_wdata *stripe, int x)
     {
 		pos[Y] = y;
         if (cub->ray[x].hitver && cub->ray[x].dir[WEST])
-			color = get_color_from_txt(cub, stripe, pos, WEST);
-        else if (cub->ray[x].hitver && cub->ray[x].dir[EAST])
 			color = get_color_from_txt(cub, stripe, pos, EAST);
+        else if (cub->ray[x].hitver && cub->ray[x].dir[EAST])
+			color = get_color_from_txt(cub, stripe, pos, WEST);
 		else if (!cub->ray[x].hitver && cub->ray[x].dir[NORTH])
-			color = get_color_from_txt(cub, stripe, pos, NORTH);
-        else if (!cub->ray[x].hitver && cub->ray[x].dir[SOUTH])
 			color = get_color_from_txt(cub, stripe, pos, SOUTH);
+        else if (!cub->ray[x].hitver && cub->ray[x].dir[SOUTH])
+			color = get_color_from_txt(cub, stripe, pos, NORTH);
 		draw(&cub->cnvs, x, y, color);
     }
 }
