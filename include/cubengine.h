@@ -172,26 +172,6 @@ typedef struct	s_map
 	t_str	row;
 	int		columns;
 }				t_map;
-// typedef struct	s_checkpnt
-// {
-// 	char		name;
-// 	float		x;
-// 	float		y;
-// }				t_checkpnt;
-// typedef struct	s_level
-// {
-// 	t_checkpnt  start;
-// 	t_checkpnt	end;
-// }				t_level;
-// typedef struct	s_lvldata
-// {
-// 	char		current_cp;
-// 	char		last_cp;
-// 	int			cp_nb;
-// 	int			lvl_nb;
-// 	t_level		level[10];
-// 	t_checkpnt	checkps[20];
-// }				t_lvldata;
 typedef struct	s_read_check
 {
 	t_bool	resolution;
@@ -234,59 +214,6 @@ typedef struct	s_cub
 t_bool			g_end_splsh;
 int				g_indx_splsh;
 
-// int		init_camera(t_cub *cub);
-// t_bool	is_camera(t_cub *cub, int i, int j);
-// int		set_camera_rotation(t_cub *cub, char direction);
-// //
-// int		check_filename(t_str filename, int ext);
-// int		check_color(t_color color);
-// int		check_map_element(t_cub *cub, int i, int j);
-// int		check_map(t_cub *cub);
-// int		check_args( t_cub *cub, int argc, const t_str *args);
-// //
-// int		event_key_pressed(int key, t_cub *cub);
-// int		event_key_released(int key, t_cub *cub);
-// int		event_game_loop(t_cub *cub);
-// //
-// int		init_read(t_cub *cub);
-// int		init_mlx(t_cub *cub);
-// int		init_cam(t_cub *cub);
-// int		init_cub(t_cub *cub);
-// int		init_game(t_cub *cub, int ac, t_str *av);
-// int		init_textures(t_cub *cub);
-// int		init_textures_extra(t_cub *cub);
-// int		init_sprites(t_cub *cub);
-// int		init_rays(t_cub *cub);
-// //
-// void	init_ray(t_ray *ray);
-// void	hori_collision(t_cub *cub, t_rdata *h, t_ray *r);
-// void	vert_collision(t_cub *cub, t_rdata *v, t_ray *r);
-// void	update_ray(t_cub *cub, t_ray *ray);
-// //
-// int		read_resolution(t_cub *cub, t_str line);
-// int		read_xpm(t_cub *cub, t_str line, int txt_index);
-// int		read_color(t_cub *cub, t_str line, int clr_index);
-// int		read_map(t_cub *cub, t_str line);
-// int		handle_line(t_cub *cub, t_str line);
-// //
-// //void	render_sprite(t_cub *cub, int id, int offx, int offy);
-// void    render_wall_stripe(t_cub *cub, t_wdata *stripe, int x);
-// void	render_ciel_stripe(t_cub *cub, int ystart, int yend, int x);
-// void	render_flor_stripe(t_cub *cub, int ystart, int yend, int x);
-// //
-// void	update_camera(t_cub *cub);
-// void	update_rays(t_cub *cub);
-// void	update_rendering_walls(t_cub *cub);
-// void	update_rendering_sprites(t_cub *cub);
-// void    update_rendering_hud(t_cub *cub, t_img *hud);
-// //
-// float	normalize_spr(t_cub *cub, float angle);
-// void	sort_sprites(t_cub *cub);
-// int		add_sprite(t_cub *cub, int i, int j);
-// //
-// int		clean(t_cub *cub, int retcode);
-// int		take_screenshot(t_cub *cub);
-//
 int		get_color_from_txt(t_cub *cub, t_wdata *stripe, int pos[2], int img);
 int		color_rgb_to_hex(t_color clr);
 t_color	color_hex_to_rgb(unsigned int color);
@@ -299,7 +226,7 @@ int		ft_strlen_2d(t_str *str);
 int		free_2d(t_str *str);
 t_bool	is_wall(t_cub *cub, float x, float y);
 t_bool	is_sprite(t_cub *cub, float x, float y);
-//
+
 int		ft_atoi(const char *str);
 void	ft_free(char *s);
 int		get_next_line(int fd, char **line);
@@ -316,18 +243,13 @@ int		ft_perror(t_str msg, int return_code);
 int		ft_clean(t_cub *cub, int return_code);
 
 
-// int		init_splash_screen(t_cub *cub);
-// int		init_checkpoints(t_cub *cub);
-// int		init_levels(t_cub *cub);
-// int		update_level(t_cub *cub);
-// void	render_sprite(t_cub *cub, int id, int off[2], int spr);
-char	value_at_pos(t_cub *cub, int x, int y);
-
-void check_filename(t_cub *cub, t_str filename, t_str extension, t_bool case_sens);
-void read_file(t_cub *cub, t_str filename);
-void check_map(t_cub *cub);
-void	init_cub(t_cub *cub);
+char		value_at_pos(t_cub *cub, int x, int y);
+void		check_filename(t_cub *cub, t_str fname, t_str ext, t_bool case_s);
+void		read_file(t_cub *cub, t_str fname);
+void		check_map(t_cub *cub);
+void		init_cub(t_cub *cub);
 void		check_camera(t_cub *cub);
 void		check_all(t_cub *cub);
+void		init_game(t_cub *cub);
 
 #endif

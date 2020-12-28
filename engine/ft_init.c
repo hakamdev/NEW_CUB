@@ -26,7 +26,6 @@ void		init_cub(t_cub *cub)
 	cub->map = 				NULL;
 	cub->spr = 				NULL;
 	cub->ray = 				NULL;
-	init_cam(cub);
 	while (++i < 6)
 		cub->txt[i].path =	NULL;
 }
@@ -43,4 +42,9 @@ void		init_mlx(t_cub *cub)
 											&cub->cnvs.sl, &cub->cnvs.end);
 }
 
-
+void		init_game(t_cub *cub)
+{
+	init_cub(cub);
+	init_cam(cub);
+	init_mlx(cub);
+}

@@ -37,30 +37,29 @@ void check_filename(t_cub *cub, t_str fname, t_str ext, t_bool case_sens)
                   ft_clean(cub, ERROR));
 }
 
-void check_second_arg(t_cub *cub, t_str arg)
-{
-    if (IS_SUCESS(ft_strncmp(arg, "--save", 7)))
-        ft_perror("Second Argument is not corrent!",
-                  ft_clean(cub, ERROR));
-}
-
 void check_arguments(t_cub *cub, int ac, t_str *av)
 {
     if (ac < 2)
         ft_perror("Config (.cub) file is required for the game to run!",
                   ft_clean(cub, ERROR));
-    if (ac > 3)
+    else if (ac > 3)
         ft_perror("No more than 2 Arguments are allowed!",
                   ft_clean(cub, ERROR));
     check_filename(cub, av[1], ".cub", true);
     if (ac == 3)
-        check_second_arg(cub, av[2]);
+	{
+        if (!IS_SUCESS(ft_strncmp(av[2], "--save", 7)))
+        	ft_perror("Second Argument is not corrent!", ft_clean(cub, ERROR));
+		else
+			cub->screenshot = true;
+	}
 }
 
 int main(int ac, t_str *av)
 {
     t_cub cub;
-    check_arguments(&cub, ac, av);
+
 	init_cub(&cub);
+    check_arguments(&cub, ac, av);
     read_file(&cub, av[1]);
 }

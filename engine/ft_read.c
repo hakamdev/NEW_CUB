@@ -64,9 +64,9 @@ void read_resolution(t_cub *cub)
 	if (ft_strlen_2d(cub->parts) > 3)
 		ft_perror("Additional Agruments for Resolution!", ft_clean(cub, ERROR));
 	if (IS_ERROR(cub->cnvs.width = ft_atoi(cub->parts[1])) || cub->cnvs.width <= 0)
-		ft_perror("Invalid Value for Resolution (Width)!", ft_clean(cub, ERROR));
+		ft_perror("Invalid Value for Resolution!", ft_clean(cub, ERROR));
 	if (IS_ERROR(cub->cnvs.height = ft_atoi(cub->parts[2])) || cub->cnvs.height <= 0)
-		ft_perror("Invalid Value for Resolution (Height)!", ft_clean(cub, ERROR));
+		ft_perror("Invalid Value for Resolution!", ft_clean(cub, ERROR));
 	cub->cnvs.width = cub->cnvs.width > MAX_WIDTH ? MAX_WIDTH : cub->cnvs.width;
 	cub->cnvs.height = cub->cnvs.height > MAX_HEIGHT ? MAX_HEIGHT : cub->cnvs.height;
 	cub->checker.resolution = true;
@@ -79,6 +79,8 @@ void read_north_texture(t_cub *cub)
 
 	if (cub->checker.txt_north)
 		ft_perror("Duplicate key (NO) !", ft_clean(cub, ERROR));
+	if (ft_strlen_2d(cub->parts) < 2)
+		ft_perror("No Path provided for(NO) !", ft_clean(cub, ERROR));
 	path = extract_value(cub->line);
 	check_filename(cub, path, ".xpm", false);
 	cub->txt[NORTH].path = path;
@@ -95,6 +97,8 @@ void read_south_texture(t_cub *cub)
 
 	if (cub->checker.txt_south)
 		ft_perror("Duplicate key (SO) !", ft_clean(cub, ERROR));
+	if (ft_strlen_2d(cub->parts) < 2)
+		ft_perror("No Path provided for(SO) !", ft_clean(cub, ERROR));
 	path = extract_value(cub->line);
 	check_filename(cub, path, ".xpm", false);
 	cub->txt[SOUTH].path = path;
@@ -111,6 +115,8 @@ void read_west_texture(t_cub *cub)
 
 	if (cub->checker.txt_west)
 		ft_perror("Duplicate key (WE) !", ft_clean(cub, ERROR));
+	if (ft_strlen_2d(cub->parts) < 2)
+		ft_perror("No Path provided for(WE) !", ft_clean(cub, ERROR));
 	path = extract_value(cub->line);
 	check_filename(cub, path, ".xpm", false);
 	cub->txt[WEST].path = path;
@@ -127,6 +133,8 @@ void read_east_texture(t_cub *cub)
 
 	if (cub->checker.txt_east)
 		ft_perror("Duplicate key (EA) !", ft_clean(cub, ERROR));
+	if (ft_strlen_2d(cub->parts) < 2)
+		ft_perror("No Path provided for(EA) !", ft_clean(cub, ERROR));
 	path = extract_value(cub->line);
 	check_filename(cub, path, ".xpm", false);
 	cub->txt[EAST].path = path;
@@ -143,6 +151,8 @@ void read_sprite(t_cub *cub)
 
 	if (cub->checker.txt_sprite)
 		ft_perror("Duplicate key (S) !", ft_clean(cub, ERROR));
+	if (ft_strlen_2d(cub->parts) < 2)
+		ft_perror("No Path provided for(S) !", ft_clean(cub, ERROR));
 	path = extract_value(cub->line);
 	check_filename(cub, path, ".xpm", false);
 	cub->txt[SPR].path = path;
@@ -292,17 +302,20 @@ void read_file(t_cub *cub, t_str filename)
 	///////////////////////
 	write(1, "\033[0;32m", 8);
 	printf("RES: \n");
-	printf("WIDTH = |%d|\n", cub->cnvs.width);
-	printf("HEIGHT = |%d|\n\n", cub->cnvs.height);
+	printf("WIDTH  = |%04d|\n", cub->cnvs.width);
+	printf("HEIGHT = |%04d|\n\n", cub->cnvs.height);
+	write(1, "\033[0;33m", 8);
 	printf("TEXTURES: \n");
-	printf("NO = |%s|\n", cub->txt[NORTH].path);
-	printf("SO = |%s|\n", cub->txt[SOUTH].path);
-	printf("WE = |%s|\n", cub->txt[WEST].path);
-	printf("EA = |%s|\n", cub->txt[EAST].path);
-	printf("S = |%s|\n\n", cub->txt[SPR].path);
+	printf("NO = |%30s|\n", cub->txt[NORTH].path);
+	printf("SO = |%30s|\n", cub->txt[SOUTH].path);
+	printf("WE = |%30s|\n", cub->txt[WEST].path);
+	printf("EA = |%30s|\n", cub->txt[EAST].path);
+	printf("S  = |%30s|\n\n", cub->txt[SPR].path);
+	write(1, "\033[0;34m", 8);
 	printf("COLORS: \n");
-	printf("F = |R:%d|G:%d|B:%d|\n", cub->color[FLOOR].r, cub->color[FLOOR].g, cub->color[FLOOR].b);
-	printf("C = |R:%d|G:%d|B:%d|\n\n", cub->color[CIEL].r, cub->color[CIEL].g, cub->color[CIEL].b);
+	printf("F = |R:%03d|G:%03d|B:%03d|\n", cub->color[FLOOR].r, cub->color[FLOOR].g, cub->color[FLOOR].b);
+	printf("C = |R:%03d|G:%03d|B:%03d|\n\n", cub->color[CIEL].r, cub->color[CIEL].g, cub->color[CIEL].b);
+	write(1, "\033[0;35m", 8);
 	printf("MAP: \n");
 	for (int i = 0; i < cub->rows_nb; i++)
 		printf("%02d |%s|\n", i, cub->map[i].row);
