@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:53:13 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 18:06:09 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/28 18:10:47 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,6 +243,7 @@ void		init_game(t_cub *cub, int ac, t_str *av);
 void		init_ray(t_ray *ray);
 void		init_rays(t_cub *cub);
 void		init_sprites(t_cub *cub);
+void		init_images(t_cub *cub);
 void		update_ray(t_cub *cub, t_ray *ray);
 
 float		normalize_spr(t_cub *cub, float angle);
@@ -261,8 +262,6 @@ void	render_sprite(t_cub *cub, int id, int off[2]);
 void    render_wall_stripe(t_cub *cub, t_wdata *stripe, int x);
 void	render_ciel_stripe(t_cub *cub, int ystart, int yend, int x);
 void	render_flor_stripe(t_cub *cub, int ystart, int yend, int x);
-
-
 
 
 #endif

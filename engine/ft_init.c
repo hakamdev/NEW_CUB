@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:52:03 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 17:52:06 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/28 18:13:21 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,6 @@ void		init_mlx(t_cub *cub)
 		ft_perror( "Error: Failed to initialize Canvas!", ft_clean(cub, ERROR));
 	cub->cnvs.data = (int *)mlx_get_data_addr(cub->cnvs.img, &cub->cnvs.bpp,
 											&cub->cnvs.sl, &cub->cnvs.end);
-}
-
-void		init_game(t_cub *cub, int ac, t_str *av)
-{
-	init_cub(cub);
-	init_cam(cub);
-	check_arguments(cub, ac, av);
-    read_file(cub, av[1]);
-	init_mlx(cub);
 }
 
 int			init_sprite(t_cub *cub, int i, int j)
@@ -126,10 +117,19 @@ void		init_rays(t_cub *cub)
 		cub->ray[i].hitver = false;
 		init_ray(&cub->ray[i]);
 	}
-	return (SUCCESS);
 }
 
-
+void		init_game(t_cub *cub, int ac, t_str *av)
+{
+	init_cub(cub);
+	init_cam(cub);
+	check_arguments(cub, ac, av);
+    read_file(cub, av[1]);
+	init_mlx(cub);
+	init_images(cub);
+	init_rays(cub);
+	init_sprites(cub);
+}
 
 
 

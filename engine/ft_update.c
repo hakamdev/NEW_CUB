@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:53:02 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 18:00:08 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/28 18:13:50 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void update_rendering_sprites(t_cub *cub)
 	{
 		off[X] = cub->spr[i].offx;
 		off[Y] = cub->spr[i].offy;
-		render_sprite(cub, i, off, get_sprite_type(cub, cub->spr[i].x, cub->spr[i].y));
+		render_sprite(cub, i, off);
 	}
 }
 
