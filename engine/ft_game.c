@@ -59,7 +59,7 @@ int main(int ac, t_str *av)
 {
     t_cub cub;
 
-	init_cub(&cub);
+	init_game(&cub);
     check_arguments(&cub, ac, av);
     read_file(&cub, av[1]);
 }

@@ -20,12 +20,12 @@ void		init_cub(t_cub *cub)
 	cub->sprs_nb = 			0;
 	WIN_WIDTH = 			0;
 	WIN_HEIGHT = 			0;
-	cub->errno =			NULL;
-	cub->fname =			NULL;
-	cub->screenshot = 		false;
 	cub->map = 				NULL;
 	cub->spr = 				NULL;
 	cub->ray = 				NULL;
+	cub->line =				NULL;
+	cub->parts =			NULL;
+	cub->screenshot = 		false;
 	while (++i < 6)
 		cub->txt[i].path =	NULL;
 }

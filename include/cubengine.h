@@ -33,26 +33,10 @@
 # define WEST	2
 # define EAST	3
 # define SPR	4
-// # define CP		5
-// # define HUD	6
-// # define SPLSH	7
-
-// # define A 0
-// # define B 1
-// # define C 2
-// # define D 3
-// # define E 4
-// # define F 5
-// # define G 6
-
 # define CIEL  	0
 # define FLOOR 	1
-
 # define X 		0
 # define Y 		1
-
-// # define EXT_CUB 0
-// # define EXT_XPM 1
 
 # define EV_KEY_PRESSED		2
 # define EV_KEY_RELEASED	3
@@ -186,29 +170,29 @@ typedef struct	s_read_check
 }				t_read_check;
 typedef struct	s_cub
 {
-	void		*window;
-	void		*mlx;
-	int			rows_nb;
-	int			sprs_nb;
-	int			read_nb;
-	int			cp_nb;
-	int			level_nb;
-	int			currlvl;
-	int			currcp;
-	char		lastcpn;
-	t_str		fname;
-	t_str		errno;
-	t_str		line;
-	t_str		*parts;
-	t_map		*map;
-	t_sprite	*spr;
-	t_ray		*ray;
-	t_camera	cam;
-	t_img		cnvs;
-	t_img		txt[8];
-	t_color		color[2];
-	t_bool		screenshot;
-	t_read_check checker;
+	void			*window;
+	void			*mlx;
+	int				rows_nb;
+	int				sprs_nb;
+	int				read_nb;
+	t_str			line;
+	t_str			*parts;
+	t_map			*map;
+	t_sprite		*spr;
+	t_ray			*ray;
+	t_camera		cam;
+	t_img			cnvs;
+	t_img			txt[6];
+	t_color			color[2];
+	t_bool			screenshot;
+	t_read_check	checker;
+	// int			cp_nb;
+	// int			level_nb;
+	//  int			currlvl;
+	// int			currcp;
+	//  char		lastcpn;
+	// t_str		fname;
+	// t_str		errno;
 }				t_cub;
 
 t_bool			g_end_splsh;
