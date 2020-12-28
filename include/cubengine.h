@@ -210,6 +210,7 @@ int		ft_strlen_2d(t_str *str);
 int		free_2d(t_str *str);
 t_bool	is_wall(t_cub *cub, float x, float y);
 t_bool	is_sprite(t_cub *cub, float x, float y);
+t_str	to_lowercase(t_str str);
 
 int		ft_atoi(const char *str);
 void	ft_free(char *s);
@@ -229,11 +230,20 @@ int		ft_clean(t_cub *cub, int return_code);
 
 char		value_at_pos(t_cub *cub, int x, int y);
 void		check_filename(t_cub *cub, t_str fname, t_str ext, t_bool case_s);
+void		check_arguments(t_cub *cub, int ac, t_str *av);
 void		read_file(t_cub *cub, t_str fname);
 void		check_map(t_cub *cub);
 void		init_cub(t_cub *cub);
 void		check_camera(t_cub *cub);
 void		check_all(t_cub *cub);
-void		init_game(t_cub *cub);
+void		init_game(t_cub *cub, int ac, t_str *av);
+
+void		init_ray(t_ray *ray);
+void		init_rays(t_cub *cub);
+void		init_sprites(t_cub *cub);
+void		update_ray(t_cub *cub, t_ray *ray);
+
+float		normalize_spr(t_cub *cub, float angle);
+void		sort_sprites(t_cub *cub);
 
 #endif

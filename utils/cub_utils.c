@@ -21,11 +21,17 @@ int		ft_strlen_2d(t_str *str)
 	return (i);
 }
 
-int		exit_error(t_cub *cub, t_str error_msg)
+t_str	to_lowercase(t_str str)
 {
-	if (error_msg)
-		cub->errno = error_msg;
-	return (ERROR);
+    int i;
+    t_str new_str;
+
+    i = -1;
+    new_str = ft_strdup(str);
+    while (new_str && new_str[++i])
+        if (new_str[i] >= 'A' && new_str[i] <= 'Z')
+            new_str[i] = new_str[i] + 32;
+    return (new_str);
 }
 
 void	draw(t_img *canvas, int x, int y, int color)

@@ -1,6 +1,6 @@
-   R 1222 100000
+R 1222 6633
 NO ./assets/wood.XPm
-SO ./assets/redbrick.xpm    
+SO ./assets/redbrick.xpm
 WE ./assets/stone.xpm
 EA ./assets/mossy.xpm
 S ./assets/sp2.xpm
