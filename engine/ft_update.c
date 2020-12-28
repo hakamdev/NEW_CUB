@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:53:02 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 18:25:11 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/28 18:55:11 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,3 @@ void update_rendering_sprites(t_cub *cub)
 		render_sprite(cub, i, off);
 	}
 }
-

@@ -6,13 +6,13 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:51:36 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 17:51:40 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/28 18:53:35 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubengine.h"
 
-void		check_filename(t_cub *cub, t_str fname, t_str ext, t_bool case_sens)
+void	check_filename(t_cub *cub, t_str fname, t_str ext, t_bool case_sens)
 {
     int len;
     t_str lower_str;
@@ -36,7 +36,7 @@ void		check_filename(t_cub *cub, t_str fname, t_str ext, t_bool case_sens)
                   ft_clean(cub, ERROR));
 }
 
-void		check_arguments(t_cub *cub, int ac, t_str *av)
+void	check_arguments(t_cub *cub, int ac, t_str *av)
 {
     if (ac < 2)
         ft_perror("Config (.cub) file is required for the game to run!",
@@ -54,7 +54,7 @@ void		check_arguments(t_cub *cub, int ac, t_str *av)
 	}
 }
 
-void		check_map_element(t_cub *cub, int i, int j)
+void	check_map_element(t_cub *cub, int i, int j)
 {
 	int		m;
 	int		n;
@@ -69,7 +69,7 @@ void		check_map_element(t_cub *cub, int i, int j)
 	}
 }
 
-void		check_map(t_cub *cub)
+void	check_map(t_cub *cub)
 {
 	int		i;
 	int		j;
@@ -88,7 +88,7 @@ void		check_map(t_cub *cub)
 	}
 }
 
-void		check_all(t_cub *cub)
+void	check_all(t_cub *cub)
 {
 	check_map(cub);
 	check_camera(cub);

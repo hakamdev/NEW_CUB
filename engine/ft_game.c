@@ -6,13 +6,13 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:51:50 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 18:12:46 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/28 18:54:16 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubengine.h"
 
-int main(int ac, t_str *av)
+int		main(int ac, t_str *av)
 {
     t_cub cub;
 
@@ -23,4 +23,5 @@ int main(int ac, t_str *av)
 	mlx_hook(cub.window, EV_KEY_RELEASED, 1L << 1, event_key_released, &cub);
 	mlx_loop_hook(cub.mlx, event_game_loop, &cub);
 	mlx_loop(cub.mlx);
+	return (SUCCESS);
 }

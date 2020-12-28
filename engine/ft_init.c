@@ -6,13 +6,13 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:52:03 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 18:18:19 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/28 18:54:40 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubengine.h"
 
-void		init_cam(t_cub *cub)
+void	init_cam(t_cub *cub)
 {
 	cub->cam.mov_dir =		0;
 	cub->cam.rot_dir =		0;
@@ -21,7 +21,7 @@ void		init_cam(t_cub *cub)
 	cub->cam.rot_spd =		RAD(1.0F);
 }
 
-void		init_cub(t_cub *cub)
+void	init_cub(t_cub *cub)
 {
 	int		i;
 
@@ -42,7 +42,7 @@ void		init_cub(t_cub *cub)
 		cub->txt[i].path =	NULL;
 }
 
-void		init_mlx(t_cub *cub)
+void	init_mlx(t_cub *cub)
 {
 	if (!(cub->mlx = mlx_init()))
 		ft_perror( "Error: Failed to initialize mlx!", ft_clean(cub, ERROR));
@@ -54,7 +54,7 @@ void		init_mlx(t_cub *cub)
 											&cub->cnvs.sl, &cub->cnvs.end);
 }
 
-int			init_sprite(t_cub *cub, int i, int j)
+int		init_sprite(t_cub *cub, int i, int j)
 {
 	int			index;
 	t_sprite	tmp_spr;
@@ -77,7 +77,7 @@ int			init_sprite(t_cub *cub, int i, int j)
 	return (SUCCESS);
 }
 
-void		init_sprites(t_cub *cub)
+void	init_sprites(t_cub *cub)
 {
 	int		i;
 	int		j;
@@ -94,7 +94,7 @@ void		init_sprites(t_cub *cub)
 	}
 }
 
-void		init_ray(t_ray *ray)
+void	init_ray(t_ray *ray)
 {
 		ray->dir[SOUTH] = (ray->ang > 0.0F) && (ray->ang < M_PI);
 		ray->dir[EAST] = (ray->ang < 0.5F * M_PI) || (ray->ang > 1.5F * M_PI);
@@ -102,7 +102,7 @@ void		init_ray(t_ray *ray)
 		ray->dir[WEST] = !(ray->dir[EAST]);
 }
 
-void		init_rays(t_cub *cub)
+void	init_rays(t_cub *cub)
 {
 	int		i;
 
@@ -119,7 +119,7 @@ void		init_rays(t_cub *cub)
 	}
 }
 
-void		init_game(t_cub *cub, int ac, t_str *av)
+void	init_game(t_cub *cub, int ac, t_str *av)
 {
 	init_cub(cub);
 	init_cam(cub);
@@ -130,7 +130,3 @@ void		init_game(t_cub *cub, int ac, t_str *av)
 	init_rays(cub);
 	init_sprites(cub);
 }
-
-
-
-

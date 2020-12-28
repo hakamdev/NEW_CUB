@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:53:13 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 18:10:47 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/28 18:56:41 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-
-// Test
-# include <stdio.h>
-# include <string.h>
-//
 
 # define POW(a)			 ((a) * (a))
 # define RAD(a)			 ((float)((a) * M_PI / 180))
@@ -200,68 +195,66 @@ typedef struct	s_cub
 	t_read_check	checker;
 }				t_cub;
 
-int		get_color_from_txt(t_cub *cub, t_wdata *stripe, int pos[2], int img);
-int		color_rgb_to_hex(t_color clr);
-t_color	color_hex_to_rgb(unsigned int color);
-float	get_distance(t_cub *cub, float x, float y);
-float	normalize_rad(float angle);
-char	value_at(t_cub *cub, int x, int y);
-void	draw(t_img *canvas, int x, int y, int color);
+int				get_color_from_txt(t_cub *cub, t_wdata *stripe, int pos[2], int img);
+int				color_rgb_to_hex(t_color clr);
+t_color			color_hex_to_rgb(unsigned int color);
+float			get_distance(t_cub *cub, float x, float y);
+float			normalize_rad(float angle);
+char			value_at(t_cub *cub, int x, int y);
+void			draw(t_img *canvas, int x, int y, int color);
+		
+int				ft_strlen_2d(t_str *str);
+int				free_2d(t_str *str);
+t_bool			is_wall(t_cub *cub, float x, float y);
+t_bool			is_sprite(t_cub *cub, float x, float y);
+t_str			to_lowercase(t_str str);
+		
+int				ft_atoi(const char *str);
+void			ft_free(char *s);
+int				get_next_line(int fd, char **line);
+void			ft_putnbr(int n);
+char			**ft_split(const char *ss, char c);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+char			*ft_strdup(const char *s);
+char			*ft_strjoin(char *s1, char *s2);
+size_t			ft_strlen(const char *s);
+t_bool			ft_strnchar(const char *str, char c);
+char			*ft_strnstr(const char *haystack, const char *needle, size_t len);
+char			*ft_strsub(char **s, unsigned int start, size_t n);
+int				ft_perror(t_str msg, int return_code);
+int				ft_clean(t_cub *cub, int return_code);
 
-int		ft_strlen_2d(t_str *str);
-int		free_2d(t_str *str);
-t_bool	is_wall(t_cub *cub, float x, float y);
-t_bool	is_sprite(t_cub *cub, float x, float y);
-t_str	to_lowercase(t_str str);
+char			value_at_pos(t_cub *cub, int x, int y);
+void			check_filename(t_cub *cub, t_str fname, t_str ext, t_bool case_s);
+void			check_arguments(t_cub *cub, int ac, t_str *av);
+void			read_file(t_cub *cub, t_str fname);
+void			check_map(t_cub *cub);
+void			init_cub(t_cub *cub);
+void			check_camera(t_cub *cub);
+void			check_all(t_cub *cub);
+void			init_game(t_cub *cub, int ac, t_str *av);
 
-int		ft_atoi(const char *str);
-void	ft_free(char *s);
-int		get_next_line(int fd, char **line);
-void	ft_putnbr(int n);
-char	**ft_split(const char *ss, char c);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strdup(const char *s);
-char	*ft_strjoin(char *s1, char *s2);
-size_t	ft_strlen(const char *s);
-t_bool	ft_strnchar(const char *str, char c);
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
-char	*ft_strsub(char **s, unsigned int start, size_t n);
-int		ft_perror(t_str msg, int return_code);
-int		ft_clean(t_cub *cub, int return_code);
+void			init_ray(t_ray *ray);
+void			init_rays(t_cub *cub);
+void			init_sprites(t_cub *cub);
+void			init_images(t_cub *cub);
+void			update_ray(t_cub *cub, t_ray *ray);
 
+float			normalize_spr(t_cub *cub, float angle);
+void			sort_sprites(t_cub *cub);
 
-char		value_at_pos(t_cub *cub, int x, int y);
-void		check_filename(t_cub *cub, t_str fname, t_str ext, t_bool case_s);
-void		check_arguments(t_cub *cub, int ac, t_str *av);
-void		read_file(t_cub *cub, t_str fname);
-void		check_map(t_cub *cub);
-void		init_cub(t_cub *cub);
-void		check_camera(t_cub *cub);
-void		check_all(t_cub *cub);
-void		init_game(t_cub *cub, int ac, t_str *av);
+int				event_key_pressed(int key, t_cub *cub);
+int				event_key_released(int key, t_cub *cub);
+int				event_game_loop(t_cub *cub);
 
-void		init_ray(t_ray *ray);
-void		init_rays(t_cub *cub);
-void		init_sprites(t_cub *cub);
-void		init_images(t_cub *cub);
-void		update_ray(t_cub *cub, t_ray *ray);
+void			update_camera(t_cub *cub);
+void			update_rays(t_cub *cub);
+void			update_rendering_walls(t_cub *cub);
+void			update_rendering_sprites(t_cub *cub);
 
-float		normalize_spr(t_cub *cub, float angle);
-void		sort_sprites(t_cub *cub);
-
-int		event_key_pressed(int key, t_cub *cub);
-int		event_key_released(int key, t_cub *cub);
-int		event_game_loop(t_cub *cub);
-
-void	update_camera(t_cub *cub);
-void	update_rays(t_cub *cub);
-void	update_rendering_walls(t_cub *cub);
-void	update_rendering_sprites(t_cub *cub);
-
-void	render_sprite(t_cub *cub, int id, int off[2]);
-void    render_wall_stripe(t_cub *cub, t_wdata *stripe, int x);
-void	render_ciel_stripe(t_cub *cub, int ystart, int yend, int x);
-void	render_flor_stripe(t_cub *cub, int ystart, int yend, int x);
-
+void			render_sprite(t_cub *cub, int id, int off[2]);
+void    		render_wall_stripe(t_cub *cub, t_wdata *stripe, int x);
+void			render_ciel_stripe(t_cub *cub, int ystart, int yend, int x);
+void			render_flor_stripe(t_cub *cub, int ystart, int yend, int x);
 
 #endif
