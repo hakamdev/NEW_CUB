@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_camera.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/28 17:51:27 by ehakam            #+#    #+#             */
+/*   Updated: 2020/12/28 17:51:32 by ehakam           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cubengine.h"
 
 void	set_camera_rotation(t_cub *cub, char direction)
@@ -22,7 +34,7 @@ t_bool	is_camera(t_cub *cub, int i, int j)
 	return (false);
 }
 
-void		check_camera(t_cub *cub)
+void	check_camera(t_cub *cub)
 {
 	t_bool		cam_exists;
 	int			i;
