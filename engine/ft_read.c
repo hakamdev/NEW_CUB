@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:52:37 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 17:52:39 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/28 18:17:09 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -309,27 +309,4 @@ void read_file(t_cub *cub, t_str filename)
 	check_all(cub);
 	if (IS_ERROR(close(fd)))
 		ft_perror("Failed to close file after read!", ft_clean(cub, ERROR));
-
-
-	///////////////////////
-	write(1, "\033[0;32m", 8);
-	printf("RES: \n");
-	printf("WIDTH  = |%04d|\n", cub->cnvs.width);
-	printf("HEIGHT = |%04d|\n\n", cub->cnvs.height);
-	write(1, "\033[0;33m", 8);
-	printf("TEXTURES: \n");
-	printf("NO = |%30s|\n", cub->txt[NORTH].path);
-	printf("SO = |%30s|\n", cub->txt[SOUTH].path);
-	printf("WE = |%30s|\n", cub->txt[WEST].path);
-	printf("EA = |%30s|\n", cub->txt[EAST].path);
-	printf("S  = |%30s|\n\n", cub->txt[SPR].path);
-	write(1, "\033[0;34m", 8);
-	printf("COLORS: \n");
-	printf("F = |R:%03d|G:%03d|B:%03d|\n", cub->color[FLOOR].r, cub->color[FLOOR].g, cub->color[FLOOR].b);
-	printf("C = |R:%03d|G:%03d|B:%03d|\n\n", cub->color[CIEL].r, cub->color[CIEL].g, cub->color[CIEL].b);
-	write(1, "\033[0;35m", 8);
-	printf("MAP: \n");
-	for (int i = 0; i < cub->rows_nb; i++)
-		printf("%02d |%s|\n", i, cub->map[i].row);
-	///////////////////////
 }

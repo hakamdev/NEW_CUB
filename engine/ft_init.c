@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:52:03 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 18:13:21 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/28 18:18:19 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		init_cam(t_cub *cub)
 	cub->cam.rot_dir =		0;
 	cub->cam.side_ang = 	0.0F;
 	cub->cam.mov_spd = 		(TILE_SIZE / 20.0F);
-	cub->cam.rot_spd =		RAD(0.3F);
+	cub->cam.rot_spd =		RAD(1.0F);
 }
 
 void		init_cub(t_cub *cub)
