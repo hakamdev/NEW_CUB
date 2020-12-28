@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:53:13 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 17:53:15 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/28 18:06:09 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,17 +198,7 @@ typedef struct	s_cub
 	t_color			color[2];
 	t_bool			screenshot;
 	t_read_check	checker;
-	// int			cp_nb;
-	// int			level_nb;
-	//  int			currlvl;
-	// int			currcp;
-	//  char		lastcpn;
-	// t_str		fname;
-	// t_str		errno;
 }				t_cub;
-
-t_bool			g_end_splsh;
-int				g_indx_splsh;
 
 int		get_color_from_txt(t_cub *cub, t_wdata *stripe, int pos[2], int img);
 int		color_rgb_to_hex(t_color clr);
@@ -217,7 +207,7 @@ float	get_distance(t_cub *cub, float x, float y);
 float	normalize_rad(float angle);
 char	value_at(t_cub *cub, int x, int y);
 void	draw(t_img *canvas, int x, int y, int color);
-int		exit_error(t_cub *cub, t_str error_msg);
+
 int		ft_strlen_2d(t_str *str);
 int		free_2d(t_str *str);
 t_bool	is_wall(t_cub *cub, float x, float y);
@@ -257,5 +247,22 @@ void		update_ray(t_cub *cub, t_ray *ray);
 
 float		normalize_spr(t_cub *cub, float angle);
 void		sort_sprites(t_cub *cub);
+
+int		event_key_pressed(int key, t_cub *cub);
+int		event_key_released(int key, t_cub *cub);
+int		event_game_loop(t_cub *cub);
+
+void	update_camera(t_cub *cub);
+void	update_rays(t_cub *cub);
+void	update_rendering_walls(t_cub *cub);
+void	update_rendering_sprites(t_cub *cub);
+
+void	render_sprite(t_cub *cub, int id, int off[2]);
+void    render_wall_stripe(t_cub *cub, t_wdata *stripe, int x);
+void	render_ciel_stripe(t_cub *cub, int ystart, int yend, int x);
+void	render_flor_stripe(t_cub *cub, int ystart, int yend, int x);
+
+
+
 
 #endif
