@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:53:13 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 18:56:41 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/29 16:24:43 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
 # define POW(a)			 ((a) * (a))
 # define RAD(a)			 ((float)((a) * M_PI / 180))
 # define DEG(a)			 ((float)((a) * 180) / M_PI)
-# define IS_ERROR(f)	 ((f) == ERROR)
+# define IS_ERR(f)	 ((f) == ERR)
 # define IS_SUCESS(f)	 ((f) == SUCCESS)
 # define TILE_SIZE		 64
 # define FOV			 RAD(60.0F)
 # define CUBTITLE		 "Cub3D"
-# define ERROR			 -1
+# define ERR			 -1
 # define SUCCESS		 0
 # define MAX_READ_CONFIG 9
 # define WIN_WIDTH		 cub->cnvs.width
@@ -47,6 +47,7 @@
 
 # define EV_KEY_PRESSED		2
 # define EV_KEY_RELEASED	3
+# define EV_KEY_EXIT		17
 
 //
 # define BITSPERPIXEL 24
@@ -246,6 +247,7 @@ void			sort_sprites(t_cub *cub);
 int				event_key_pressed(int key, t_cub *cub);
 int				event_key_released(int key, t_cub *cub);
 int				event_game_loop(t_cub *cub);
+int				event_exit(t_cub *cub);
 
 void			update_camera(t_cub *cub);
 void			update_rays(t_cub *cub);

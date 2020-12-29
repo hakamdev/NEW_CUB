@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:51:27 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 18:53:17 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/28 18:59:45 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	check_camera(t_cub *cub)
 			if (is_camera(cub, i, j))
 			{
 				if (cam_exists)
-					ft_perror("Only one Player is required!", ft_clean(cub, ERROR));
+					ft_perror("Only one Player is required!", ft_clean(cub, ERR));
 				cam_exists = true;
 				set_camera_rotation(cub, value_at(cub, i, j));
 				cub->cam.x = (i + 0.5F) * TILE_SIZE;
@@ -59,5 +59,5 @@ void	check_camera(t_cub *cub)
 		}
 	}
 	if (!cam_exists)
-		ft_perror("Error: Player doesn't exist in Map!", ft_clean(cub, ERROR));
+		ft_perror("Error: Player doesn't exist in Map!", ft_clean(cub, ERR));
 }

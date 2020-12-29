@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:51:44 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 18:53:55 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/29 16:28:37 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int		event_key_pressed(int key, t_cub *cub)
 {
+	if (key == 53)
+		event_exit(cub);
 	if (key == 13 || key == 119)
 		cub->cam.mov_dir = 1;
 	if (key == 1 || key == 115)
@@ -66,4 +68,9 @@ int		event_game_loop(t_cub *cub)
 	update_rendering_sprites(cub);
 	mlx_put_image_to_window(cub->mlx, cub->window, cub->cnvs.img, 0, 0);
 	return (SUCCESS);
+}
+
+int		event_exit(t_cub *cub)
+{
+	exit(ft_clean(cub, SUCCESS));
 }

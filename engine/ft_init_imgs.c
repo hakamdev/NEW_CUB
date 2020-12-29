@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:52:11 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 18:53:04 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/28 18:59:45 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	get_img(t_cub *cub, int which)
 {
 	if (!(cub->txt[which].img = mlx_xpm_file_to_image(cub->mlx,
 	cub->txt[which].path, &cub->txt[which].width, &cub->txt[which].height)))
-		ft_perror("Error: XPM file is not valid or doesn't exist!", ft_clean(cub, ERROR));
+		ft_perror("Error: XPM file is not valid or doesn't exist!", ft_clean(cub, ERR));
 	cub->txt[which].data = (int *)mlx_get_data_addr(cub->txt[which].img,
 		&cub->txt[which].bpp, &cub->txt[which].sl, &cub->txt[which].end);
 }

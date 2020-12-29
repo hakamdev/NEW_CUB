@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:52:03 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 18:54:40 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/28 19:00:39 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void	init_cub(t_cub *cub)
 void	init_mlx(t_cub *cub)
 {
 	if (!(cub->mlx = mlx_init()))
-		ft_perror( "Error: Failed to initialize mlx!", ft_clean(cub, ERROR));
+		ft_perror( "Error: Failed to initialize mlx!", ft_clean(cub, ERR));
 	if (!(cub->window = mlx_new_window(cub->mlx, WIN_WIDTH, WIN_HEIGHT, CUBTITLE)))
-		ft_perror( "Error: Failed to initialize Window!", ft_clean(cub, ERROR));
+		ft_perror( "Error: Failed to initialize Window!", ft_clean(cub, ERR));
 	if (!(cub->cnvs.img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT)))
-		ft_perror( "Error: Failed to initialize Canvas!", ft_clean(cub, ERROR));
+		ft_perror( "Error: Failed to initialize Canvas!", ft_clean(cub, ERR));
 	cub->cnvs.data = (int *)mlx_get_data_addr(cub->cnvs.img, &cub->cnvs.bpp,
 											&cub->cnvs.sl, &cub->cnvs.end);
 }
@@ -63,7 +63,7 @@ int		init_sprite(t_cub *cub, int i, int j)
 	index = 0;
     tmp_sprs = cub->spr;
 	if (!(cub->spr = (t_sprite *)malloc(sizeof(t_sprite) * ++(cub->sprs_nb))))
-		return (ERROR);
+		return (ERR);
 	if (cub->sprs_nb > 0)
 	{
 		index = -1;
@@ -88,9 +88,9 @@ void	init_sprites(t_cub *cub)
 		i = -1;
 		while (++i < cub->map[j].columns)
 			if (value_at(cub, i, j) == '2')
-				if (IS_ERROR(init_sprite(cub, i, j)))
+				if (IS_ERR(init_sprite(cub, i, j)))
 					ft_perror("Error: Failed to allocate memory!",
-						ft_clean(cub, ERROR));
+						ft_clean(cub, ERR));
 	}
 }
 
@@ -108,7 +108,7 @@ void	init_rays(t_cub *cub)
 
 	i = -1;
 	if (!(cub->ray = malloc(sizeof(t_ray) * WIN_WIDTH)))
-		ft_perror("Error: Failed to allocate memory!", ft_clean(cub, ERROR));
+		ft_perror("Error: Failed to allocate memory!", ft_clean(cub, ERR));
 	while (++i < WIN_WIDTH)
 	{
 		cub->ray[i].dist = 0.0F;
