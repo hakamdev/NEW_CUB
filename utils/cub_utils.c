@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:54:17 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/29 18:26:34 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/29 18:40:57 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		free_2d(t_str *str)
 
 int		ft_strlen_2d(t_str *str)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (str && str[i] != NULL)

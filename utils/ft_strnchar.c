@@ -6,15 +6,17 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:55:29 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 17:55:30 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/29 18:37:10 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubengine.h"
 
-t_bool	ft_strnchar(const char *str, char c)
+t_bool		ft_strnchar(const char *str, char c)
 {
-	int		i = -1;
+	int		i;
+
+	i = -1;
 	while (str[++i])
 		if (str[i] == c)
 			return (true);
