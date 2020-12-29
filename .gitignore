@@ -3,3 +3,4 @@ Cub3D
 Cub3D.dSYM/
 .DS_Store
 */.DS_Store
+*.o
