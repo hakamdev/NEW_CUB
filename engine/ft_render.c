@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:51:11 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 18:21:04 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/29 18:21:54 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,34 @@
 
 void	render_sprite(t_cub *cub, int id, int off[2])
 {
-	int			x;
-	int			y;
-	int			rx;
-	int			ry;
+	int			ax[2];
+	int			r[2];
 	int			clrindex;
 	const float	ratio = cub->txt[SPR].width / cub->spr[id].scale;
 
-	x = -1;
-	while (++x < (int)cub->spr[id].scale)
+	ax[X] = -1;
+	while (++ax[X] < (int)cub->spr[id].scale)
 	{
-		if (off[X] + x < 0 || off[X] + x >= WIN_WIDTH)
+		if (off[X] + ax[X] < 0 || off[X] + ax[X] >= WIN_WIDTH)
 			continue ;
-		if (cub->ray[off[X] + x].dist <= cub->spr[id].dist)
+		if (cub->ray[off[X] + ax[X]].dist <= cub->spr[id].dist)
 			continue ;
-		y = -1;
-		rx = (x * ratio);
-		while (++y < (int)cub->spr[id].scale)
+		ax[Y] = -1;
+		r[X] = (ax[X] * ratio);
+		while (++ax[Y] < (int)cub->spr[id].scale)
 		{
-			if (off[Y] + y < 0 || off[Y] + y >= WIN_HEIGHT)
+			if (off[Y] + ax[Y] < 0 || off[Y] + ax[Y] >= WIN_HEIGHT)
 				continue ;
-			ry = (y * ratio);
-			clrindex = (ry * cub->txt[SPR].width) + rx;
+			r[Y] = (ax[Y] * ratio);
+			clrindex = (r[Y] * cub->txt[SPR].width) + r[X];
 			if (cub->txt[SPR].data[clrindex] != cub->txt[SPR].data[0])
-				draw(&cub->cnvs, off[X] + x, off[Y] + y, cub->txt[SPR].data[clrindex]);
+				draw(&cub->cnvs, off[X] + ax[X], off[Y] + ax[Y],
+				cub->txt[SPR].data[clrindex]);
 		}
 	}
 }
 
-void    render_wall_stripe(t_cub *cub, t_wdata *stripe, int x)
+void	render_wall_stripe(t_cub *cub, t_wdata *stripe, int x)
 {
 	int		y;
 	int		color;
@@ -50,19 +49,19 @@ void    render_wall_stripe(t_cub *cub, t_wdata *stripe, int x)
 
 	y = stripe->top - 1;
 	pos[X] = x;
-    while (++y < stripe->bttm)
-    {
+	while (++y < stripe->bttm)
+	{
 		pos[Y] = y;
-        if (cub->ray[x].hitver && cub->ray[x].dir[WEST])
+		if (cub->ray[x].hitver && cub->ray[x].dir[WEST])
 			color = get_color_from_txt(cub, stripe, pos, EAST);
-        else if (cub->ray[x].hitver && cub->ray[x].dir[EAST])
+		else if (cub->ray[x].hitver && cub->ray[x].dir[EAST])
 			color = get_color_from_txt(cub, stripe, pos, WEST);
 		else if (!cub->ray[x].hitver && cub->ray[x].dir[NORTH])
 			color = get_color_from_txt(cub, stripe, pos, SOUTH);
-        else if (!cub->ray[x].hitver && cub->ray[x].dir[SOUTH])
+		else if (!cub->ray[x].hitver && cub->ray[x].dir[SOUTH])
 			color = get_color_from_txt(cub, stripe, pos, NORTH);
 		draw(&cub->cnvs, x, y, color);
-    }
+	}
 }
 
 void	render_ciel_stripe(t_cub *cub, int ystart, int yend, int x)

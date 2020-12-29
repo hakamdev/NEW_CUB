@@ -6,13 +6,13 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:53:02 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 18:55:11 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/29 18:26:00 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubengine.h"
 
-void update_camera(t_cub *cub)
+void	update_camera(t_cub *cub)
 {
 	float next_x;
 	float next_y;
@@ -32,12 +32,12 @@ void update_camera(t_cub *cub)
 		cub->cam.y = next_y;
 }
 
-void update_rays(t_cub *cub)
+void	update_rays(t_cub *cub)
 {
-	int i;
-	float start_ang;
-	const float ang_step = FOV / WIN_WIDTH;
-	t_ray	*rrr;
+	int			i;
+	float		start_ang;
+	const float	ang_step = FOV / WIN_WIDTH;
+	t_ray		*rrr;
 
 	i = -1;
 	start_ang = cub->cam.ang - (FOV / 2);
@@ -50,13 +50,13 @@ void update_rays(t_cub *cub)
 	}
 }
 
-void update_rendering_walls(t_cub *cub)
+void	update_rendering_walls(t_cub *cub)
 {
-	int i;
-	int j;
-	t_wdata strp;
-	const float pplane_dist = (WIN_WIDTH / 2.0F) / tanf((FOV) / 2);
-	float	corr_dist;
+	int			i;
+	int			j;
+	t_wdata		strp;
+	const float	pplane_dist = (WIN_WIDTH / 2.0F) / tanf((FOV) / 2);
+	float		corr_dist;
 
 	i = -1;
 	while (++i < WIN_WIDTH)
@@ -73,25 +73,25 @@ void update_rendering_walls(t_cub *cub)
 	}
 }
 
-void update_rendering_sprites(t_cub *cub)
+void	update_rendering_sprites(t_cub *cub)
 {
-	int i;
-	const float pplane_dist = (WIN_WIDTH / 2.0F) / tanf((FOV) / 2);
+	int			i;
+	int			off[2];
+	const float	pplane_dist = (WIN_WIDTH / 2.0F) / tanf((FOV) / 2);
 
 	i = -1;
-	int	off[2];
-
 	while (++i < cub->sprs_nb)
 	{
 		cub->spr[i].dist = get_distance(cub, cub->spr[i].x, cub->spr[i].y);
-		cub->spr[i].ang = atan2f(cub->spr[i].y - cub->cam.y, cub->spr[i].x - cub->cam.x);
+		cub->spr[i].ang = atan2f(cub->spr[i].y - cub->cam.y,
+		cub->spr[i].x - cub->cam.x);
 		// float corr_dist = cub->spr[i].dist * cosf(cub->spr[i].ang - cub->cam.ang);
 		cub->spr[i].ang = normalize_spr(cub, cub->spr[i].ang);
-		cub->spr[i].scale =  WIN_WIDTH * (float)TILE_SIZE / cub->spr[i].dist;
+		cub->spr[i].scale = WIN_WIDTH * (float)TILE_SIZE / cub->spr[i].dist;
 		//cub->spr[i].dist; //(TILE_SIZE / cub->spr[i].dist * pplane_dist);
 		cub->spr[i].offy = (WIN_HEIGHT / 2.0F) - (cub->spr[i].scale / 2);
-		cub->spr[i].offx = ((DEG(cub->spr[i].ang) - DEG(cub->cam.ang)) * WIN_WIDTH)
-		/ 60 + ((WIN_WIDTH / 2.0F) - (cub->spr[i].scale / 2));
+		cub->spr[i].offx = ((DEG(cub->spr[i].ang) - DEG(cub->cam.ang))
+		* WIN_WIDTH) / 60 + ((WIN_WIDTH / 2.0F) - (cub->spr[i].scale / 2));
 	}
 	sort_sprites(cub);
 	i = -1;

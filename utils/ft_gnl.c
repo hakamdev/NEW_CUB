@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 14:22:33 by ehakam            #+#    #+#             */
-/*   Updated: 2020/10/19 20:07:02 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/29 18:35:39 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ int			get_next_line(int fd, char **line)
 	int			sread;
 	int			ret;
 
-	if (!line || !BS_VALID(BUFFER_SIZE) || !FD_VALID(fd) ||
-			read(fd, NULL, 0) == ERR || !(temp = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
+	if (!line || !FD_VALID(fd) || read(fd, NULL, 0) == ERR
+	|| !(temp = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		EXIT(ERR);
 	sread = 0;
 	if (!(*line = ft_strdup("")))

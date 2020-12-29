@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:54:17 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 17:54:19 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/29 18:26:34 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int		get_color_from_txt(t_cub *cub, t_wdata *stripe, int pos[2], int img)
 	const int	x = pos[X];
 	const int	y = pos[Y];
 
-	vertoff = y + (stripe->height - WIN_HEIGHT) / 2; /*TODO updown */
+	vertoff = y + (stripe->height - WIN_HEIGHT) / 2;
 	off[X] = (int)(cub->ray[x].hitver ? cub->ray[x].hit[Y] : cub->ray[x].hit[X]) % cub->txt[img].width;
 	off[Y] = vertoff * (cub->txt[img].height / stripe->height);
 	off[X] = off[X] < 0 ? 0 : off[X];

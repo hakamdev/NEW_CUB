@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:51:50 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/29 16:25:18 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/29 18:05:25 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		main(int ac, t_str *av)
 {
-    t_cub cub;
+	t_cub	cub;
 
 	init_game(&cub, ac, av);
 	if (cub.screenshot)

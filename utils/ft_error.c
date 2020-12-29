@@ -6,18 +6,18 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:54:41 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/29 16:23:56 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/29 18:29:13 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubengine.h"
 
-int ft_clean(t_cub *cub, int return_code)
+int		ft_clean(t_cub *cub, int return_code)
 {
 	return (return_code);
 }
 
-int ft_perror(t_str msg, int return_code)
+void	ft_perror(t_str msg, int return_code)
 {
 	int len;
 
@@ -26,6 +26,5 @@ int ft_perror(t_str msg, int return_code)
 	write(2, "Error: ", 7);
 	write(2, msg, len);
 	write(2, "\n\n", 2);
-	// write(2, "\033[0m", 5);
 	exit(return_code);
 }

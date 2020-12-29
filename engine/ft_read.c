@@ -6,13 +6,13 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:52:37 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/28 19:00:39 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/29 18:16:40 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubengine.h"
 
-void init_read_check(t_cub *cub)
+void	init_read_check(t_cub *cub)
 {
 	cub->checker.resolution = false;
 	cub->checker.txt_north = false;
@@ -25,7 +25,7 @@ void init_read_check(t_cub *cub)
 	cub->checker.is_map = false;
 }
 
-t_bool is_read_complete(t_cub *cub)
+t_bool	is_read_complete(t_cub *cub)
 {
 	return (cub->checker.resolution && cub->checker.txt_north &&
 			cub->checker.txt_south && cub->checker.txt_west &&
@@ -33,7 +33,7 @@ t_bool is_read_complete(t_cub *cub)
 			cub->checker.clr_ceiling && cub->checker.clr_floor);
 }
 
-t_str extract_value(t_str line)
+t_str	extract_value(t_str line)
 {
 	int start;
 	int end;
@@ -52,7 +52,7 @@ t_str extract_value(t_str line)
 	return (ft_strdup(&line[start]));
 }
 
-int countchar(const t_str str, char c)
+int		countchar(const t_str str, char c)
 {
 	int i;
 	int ccount;
@@ -67,7 +67,7 @@ int countchar(const t_str str, char c)
 	return (ccount);
 }
 
-void read_resolution(t_cub *cub)
+void	read_resolution(t_cub *cub)
 {
 	if (cub->checker.resolution)
 		ft_perror("Duplicate Key (R)!", ft_clean(cub, ERR));
@@ -75,19 +75,22 @@ void read_resolution(t_cub *cub)
 		ft_perror("Missing Agruments for Resolution!", ft_clean(cub, ERR));
 	if (ft_strlen_2d(cub->parts) > 3)
 		ft_perror("Additional Agruments for Resolution!", ft_clean(cub, ERR));
-	if (IS_ERR(cub->cnvs.width = ft_atoi(cub->parts[1])) || cub->cnvs.width <= 0)
+	if (IS_ERR(cub->cnvs.width = ft_atoi(cub->parts[1]))
+		|| cub->cnvs.width <= 0)
 		ft_perror("Invalid Value for Resolution!", ft_clean(cub, ERR));
-	if (IS_ERR(cub->cnvs.height = ft_atoi(cub->parts[2])) || cub->cnvs.height <= 0)
+	if (IS_ERR(cub->cnvs.height = ft_atoi(cub->parts[2]))
+		|| cub->cnvs.height <= 0)
 		ft_perror("Invalid Value for Resolution!", ft_clean(cub, ERR));
 	cub->cnvs.width = cub->cnvs.width > MAX_WIDTH ? MAX_WIDTH : cub->cnvs.width;
-	cub->cnvs.height = cub->cnvs.height > MAX_HEIGHT ? MAX_HEIGHT : cub->cnvs.height;
+	cub->cnvs.height = cub->cnvs.height > MAX_HEIGHT ? MAX_HEIGHT
+		: cub->cnvs.height;
 	cub->checker.resolution = true;
 }
 
-void read_north_texture(t_cub *cub)
+void	read_north_texture(t_cub *cub)
 {
-	t_str path;
-	int fd;
+	t_str	path;
+	int		fd;
 
 	if (cub->checker.txt_north)
 		ft_perror("Duplicate key (NO) !", ft_clean(cub, ERR));
@@ -102,10 +105,10 @@ void read_north_texture(t_cub *cub)
 	close(fd);
 }
 
-void read_south_texture(t_cub *cub)
+void	read_south_texture(t_cub *cub)
 {
-	t_str path;
-	int fd;
+	t_str	path;
+	int		fd;
 
 	if (cub->checker.txt_south)
 		ft_perror("Duplicate key (SO) !", ft_clean(cub, ERR));
@@ -120,10 +123,10 @@ void read_south_texture(t_cub *cub)
 	close(fd);
 }
 
-void read_west_texture(t_cub *cub)
+void	read_west_texture(t_cub *cub)
 {
-	t_str path;
-	int fd;
+	t_str	path;
+	int		fd;
 
 	if (cub->checker.txt_west)
 		ft_perror("Duplicate key (WE) !", ft_clean(cub, ERR));
@@ -138,10 +141,10 @@ void read_west_texture(t_cub *cub)
 	close(fd);
 }
 
-void read_east_texture(t_cub *cub)
+void	read_east_texture(t_cub *cub)
 {
-	t_str path;
-	int fd;
+	t_str	path;
+	int		fd;
 
 	if (cub->checker.txt_east)
 		ft_perror("Duplicate key (EA) !", ft_clean(cub, ERR));
@@ -156,10 +159,10 @@ void read_east_texture(t_cub *cub)
 	close(fd);
 }
 
-void read_sprite(t_cub *cub)
+void	read_sprite(t_cub *cub)
 {
-	t_str path;
-	int fd;
+	t_str	path;
+	int		fd;
 
 	if (cub->checker.txt_sprite)
 		ft_perror("Duplicate key (S) !", ft_clean(cub, ERR));
@@ -174,11 +177,11 @@ void read_sprite(t_cub *cub)
 	close(fd);
 }
 
-void read_ceiling_color(t_cub *cub)
+void	read_ceiling_color(t_cub *cub)
 {
-	t_str *parts;
-	t_color color;
-	const t_str color_values = extract_value(cub->line);
+	t_str		*parts;
+	t_color		clr;
+	const t_str	color_values = extract_value(cub->line);
 
 	if (cub->checker.clr_ceiling)
 		ft_perror("Duplicate key (C) !", ft_clean(cub, ERR));
@@ -187,22 +190,22 @@ void read_ceiling_color(t_cub *cub)
 		ft_perror("3 R,G,B Values are required for (C)!", ft_clean(cub, ERR));
 	if (countchar(color_values, ',') > 2)
 		ft_perror("Badly delimitered RGB Values!", ft_clean(cub, ERR));
-	if (IS_ERR(color.r = ft_atoi(parts[0])) || !(color.r >= 0 && color.r <= 255))
+	if (IS_ERR(clr.r = ft_atoi(parts[0])) || !(clr.r >= 0 && clr.r <= 255))
 		ft_perror("Invalid (Red) Value for (C)!", ft_clean(cub, ERR));
-	if (IS_ERR(color.g = ft_atoi(parts[1])) || !(color.g >= 0 && color.g <= 255))
+	if (IS_ERR(clr.g = ft_atoi(parts[1])) || !(clr.g >= 0 && clr.g <= 255))
 		ft_perror("Invalid (Green) Value for (C)!", ft_clean(cub, ERR));
-	if (IS_ERR(color.b = ft_atoi(parts[2])) || !(color.b >= 0 && color.b <= 255))
+	if (IS_ERR(clr.b = ft_atoi(parts[2])) || !(clr.b >= 0 && clr.b <= 255))
 		ft_perror("Invalid (Blue) Value for (C)!", ft_clean(cub, ERR));
-	cub->color[CIEL] = color;
+	cub->color[CIEL] = clr;
 	cub->checker.clr_ceiling = true;
 	free_2d(parts);
 }
 
-void read_floor_color(t_cub *cub)
+void	read_floor_color(t_cub *cub)
 {
-	t_str *parts;
-	t_color color;
-	const t_str color_values = extract_value(cub->line);
+	t_str		*parts;
+	t_color		clr;
+	const t_str	color_values = extract_value(cub->line);
 
 	if (cub->checker.clr_floor)
 		ft_perror("Duplicate key (F) !", ft_clean(cub, ERR));
@@ -211,25 +214,26 @@ void read_floor_color(t_cub *cub)
 		ft_perror("3 R,G,B Values are required for (F)!", ft_clean(cub, ERR));
 	if (countchar(color_values, ',') > 2)
 		ft_perror("Badly delimitered RGB Values!", ft_clean(cub, ERR));
-	if (IS_ERR(color.r = ft_atoi(parts[0])) || !(color.r >= 0 && color.r <= 255))
+	if (IS_ERR(clr.r = ft_atoi(parts[0])) || !(clr.r >= 0 && clr.r <= 255))
 		ft_perror("Invalid (Red) Value for (F)!", ft_clean(cub, ERR));
-	if (IS_ERR(color.g = ft_atoi(parts[1])) || !(color.g >= 0 && color.g <= 255))
+	if (IS_ERR(clr.g = ft_atoi(parts[1])) || !(clr.g >= 0 && clr.g <= 255))
 		ft_perror("Invalid (Green) Value for (F)!", ft_clean(cub, ERR));
-	if (IS_ERR(color.b = ft_atoi(parts[2])) || !(color.b >= 0 && color.b <= 255))
+	if (IS_ERR(clr.b = ft_atoi(parts[2])) || !(clr.b >= 0 && clr.b <= 255))
 		ft_perror("Invalid (Blue) Value for (F)!", ft_clean(cub, ERR));
-	cub->color[FLOOR] = color;
+	cub->color[FLOOR] = clr;
 	cub->checker.clr_floor = true;
 	free_2d(parts);
 }
 
-void read_map(t_cub *cub) {
+void	read_map(t_cub *cub)
+{
 	int		i;
 	t_map	*tmap;
 
 	cub->checker.is_map = true;
 	if (cub->map == NULL)
 	{
-		if(!(cub->map = malloc(1 * sizeof(t_map))))
+		if (!(cub->map = malloc(1 * sizeof(t_map))))
 			ft_perror("Error: Failed to allocate memory!", ft_clean(cub, ERR));
 		cub->map[0].row = ft_strdup(cub->line);
 		cub->map[0].columns = ft_strlen(cub->line);
@@ -238,7 +242,7 @@ void read_map(t_cub *cub) {
 	}
 	i = -1;
 	tmap = cub->map;
-	if(!(cub->map = malloc(++(cub->rows_nb) * sizeof(t_map))))
+	if (!(cub->map = malloc(++(cub->rows_nb) * sizeof(t_map))))
 		ft_perror("Error: Failed to allocate memory!", ft_clean(cub, ERR));
 	while (++i < cub->rows_nb - 1)
 		cub->map[i] = tmap[i];
@@ -247,7 +251,7 @@ void read_map(t_cub *cub) {
 	free(tmap);
 }
 
-void handle_keys(t_cub *cub)
+void	handle_keys(t_cub *cub)
 {
 	if (IS_SUCESS(ft_strncmp(cub->parts[0], "R", 2)))
 		read_resolution(cub);
@@ -273,7 +277,7 @@ void handle_keys(t_cub *cub)
 		ft_perror("Unreconizable keys or Split map!", ft_clean(cub, ERR));
 }
 
-void process_line(t_cub *cub)
+void	process_line(t_cub *cub)
 {
 	if (cub->line && ft_strlen(cub->line) == 0 && !cub->checker.is_map)
 		return (ft_free(cub->line));
@@ -283,19 +287,18 @@ void process_line(t_cub *cub)
 	free_2d(cub->parts);
 }
 
-void read_file(t_cub *cub, t_str filename)
+void	read_file(t_cub *cub, t_str filename)
 {
-	int fd;
-	int read_num;
-	t_bool is_first_loop;
+	int		fd;
+	int		read_num;
+	t_bool	is_first_loop;
 
 	read_num = 0;
 	is_first_loop = true;
 	init_read_check(cub);
 	if (IS_ERR(fd = open(filename, O_RDONLY)))
 		ft_perror("Failed to open file for reading.\nIs the filename correct?",
-				  ft_clean(cub, ERR));
-	int x = 1;
+			ft_clean(cub, ERR));
 	while ((read_num = get_next_line(fd, &cub->line)) > 0)
 	{
 		is_first_loop = false;
