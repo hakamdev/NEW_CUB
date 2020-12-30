@@ -6,11 +6,19 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:52:56 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/29 18:23:01 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/30 15:47:19 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubengine.h"
+
+t_bool	is_sprite(t_cub *cub, float x, float y)
+{
+	const int	i = x / TILE_SIZE;
+	const int	j = y / TILE_SIZE;
+
+	return (ft_strnchar("234", value_at(cub, i, j)));
+}
 
 float	normalize_spr(t_cub *cub, float angle)
 {
@@ -41,5 +49,45 @@ void	sort_sprites(t_cub *cub)
 				cub->spr[j] = spr_tmp;
 			}
 		--sprs_nb;
+	}
+}
+
+int		init_sprite(t_cub *cub, int i, int j)
+{
+	int			index;
+	t_sprite	tmp_spr;
+	t_sprite	*tmp_sprs;
+
+	index = 0;
+	tmp_sprs = cub->spr;
+	if (!(cub->spr = (t_sprite *)malloc(sizeof(t_sprite) * ++(cub->sprs_nb))))
+		return (ERR);
+	if (cub->sprs_nb > 0)
+	{
+		index = -1;
+		while (++index < cub->sprs_nb - 1)
+			cub->spr[index] = tmp_sprs[index];
+		free(tmp_sprs);
+	}
+	tmp_spr.x = (i + 0.5f) * TILE_SIZE;
+	tmp_spr.y = (j + 0.5f) * TILE_SIZE;
+	cub->spr[index] = tmp_spr;
+	return (SUCCESS);
+}
+
+void	init_sprites(t_cub *cub)
+{
+	int		i;
+	int		j;
+
+	j = -1;
+	while (++j < cub->rows_nb)
+	{
+		i = -1;
+		while (++i < cub->map[j].columns)
+			if (value_at(cub, i, j) == '2')
+				if (IS_ERR(init_sprite(cub, i, j)))
+					ft_perror("Error: Failed to allocate memory!",
+						ft_clean(cub, ERR));
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:53:13 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/29 16:24:43 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/30 15:53:38 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define DEG(a)			 ((float)((a) * 180) / M_PI)
 # define IS_ERR(f)	 ((f) == ERR)
 # define IS_SUCESS(f)	 ((f) == SUCCESS)
-# define TILE_SIZE		 64
+# define TILE_SIZE		 100
 # define FOV			 RAD(60.0F)
 # define CUBTITLE		 "Cub3D"
 # define ERR			 -1
@@ -222,10 +222,10 @@ size_t			ft_strlen(const char *s);
 t_bool			ft_strnchar(const char *str, char c);
 char			*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char			*ft_strsub(char **s, unsigned int start, size_t n);
-int				ft_perror(t_str msg, int return_code);
+void			ft_perror(t_str msg, int return_code);
 int				ft_clean(t_cub *cub, int return_code);
 
-char			value_at_pos(t_cub *cub, int x, int y);
+// char			value_at_pos(t_cub *cub, int x, int y);
 void			check_filename(t_cub *cub, t_str fname, t_str ext, t_bool case_s);
 void			check_arguments(t_cub *cub, int ac, t_str *av);
 void			read_file(t_cub *cub, t_str fname);

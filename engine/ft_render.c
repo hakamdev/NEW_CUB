@@ -6,11 +6,16 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:51:11 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/29 18:21:54 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/30 15:42:00 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubengine.h"
+
+void	draw(t_img *canvas, int x, int y, int color)
+{
+	canvas->data[y * canvas->width + x] = color;
+}
 
 void	render_sprite(t_cub *cub, int id, int off[2])
 {

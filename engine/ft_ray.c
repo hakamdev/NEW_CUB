@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:52:22 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/29 18:09:47 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/30 15:43:33 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,30 @@ void	update_ray(t_cub *cub, t_ray *ray)
 		ray->dist = vertical.dist;
 		ray->hit[X] = vertical.hit[X];
 		ray->hit[Y] = vertical.hit[Y];
+	}
+}
+
+void	init_ray(t_ray *ray)
+{
+	ray->dir[SOUTH] = (ray->ang > 0.0F) && (ray->ang < M_PI);
+	ray->dir[EAST] = (ray->ang < 0.5F * M_PI) || (ray->ang > 1.5F * M_PI);
+	ray->dir[NORTH] = !(ray->dir[SOUTH]);
+	ray->dir[WEST] = !(ray->dir[EAST]);
+}
+
+void	init_rays(t_cub *cub)
+{
+	int		i;
+
+	i = -1;
+	if (!(cub->ray = malloc(sizeof(t_ray) * WIN_WIDTH)))
+		ft_perror("Error: Failed to allocate memory!", ft_clean(cub, ERR));
+	while (++i < WIN_WIDTH)
+	{
+		cub->ray[i].dist = 0.0F;
+		cub->ray[i].hit[X] = 0.0F;
+		cub->ray[i].hit[Y] = 0.0F;
+		cub->ray[i].hitver = false;
+		init_ray(&cub->ray[i]);
 	}
 }
