@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 15:26:09 by ehakam            #+#    #+#             */
-/*   Updated: 2020/10/19 20:08:01 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/30 16:41:34 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,17 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-
-#  define NL '\n'
-#  define CNULL '\0'
-#  define INULL 0
-#  define ERR -1
-#  define BUFFER_SIZE 1024
-#  define MAXINT 2147483647
-#  define MAXFD 4864
-#  define BS_VALID(BS)  (((BS) < (MAXINT) && (BS) >= (0)) ? 1 : 0)
-#  define FD_VALID(FD)  (((FD) >= 0 && (FD) <= (MAXFD)) ? 1 : 0)
-#  define EXIT_CODE(V)  (V) > 0 ? 1 : (V)
-#  define EXIT(EXT_CD)  return (EXT_CD)
+# define NL '\n'
+# define CNULL '\0'
+# define INULL 0
+# define ERR -1
+# define BUFFER_SIZE 1024
+# define MAXINT 2147483647
+# define MAXFD 4864
+# define BS_VALID(BS)  (((BS) < (MAXINT) && (BS) >= (0)) ? 1 : 0)
+# define FD_VALID(FD)  (((FD) >= 0 && (FD) <= (MAXFD)) ? 1 : 0)
+# define EXIT_CODE(V)  (V) > 0 ? 1 : (V)
+# define EXIT(EXT_CD)  return (EXT_CD)
 
 int		get_next_line(int fd, char **line);
 char	*ft_strjoin(char *s1, char *s2);

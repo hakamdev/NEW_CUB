@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:53:02 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/29 18:26:00 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/30 17:05:45 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	update_rendering_sprites(t_cub *cub)
 	i = -1;
 	while (++i < cub->sprs_nb)
 	{
-		cub->spr[i].dist = get_distance(cub, cub->spr[i].x, cub->spr[i].y);
+		cub->spr[i].dist = ft_distance(cub, cub->spr[i].x, cub->spr[i].y);
 		cub->spr[i].ang = atan2f(cub->spr[i].y - cub->cam.y,
 		cub->spr[i].x - cub->cam.x);
 		// float corr_dist = cub->spr[i].dist * cosf(cub->spr[i].ang - cub->cam.ang);

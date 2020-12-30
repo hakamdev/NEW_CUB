@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:52:22 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/30 15:43:33 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/30 17:05:45 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	hori_collision(t_cub *cub, t_rdata *h, t_ray *r)
 		if (is_wall(cub, h->hit[X],
 		(r->dir[NORTH] ? h->hit[Y] - 1 : h->hit[Y])))
 		{
-			h->dist = get_distance(cub, h->hit[X], h->hit[Y]);
+			h->dist = ft_distance(cub, h->hit[X], h->hit[Y]);
 			break ;
 		}
 		h->hit[X] += h->step[X];
@@ -55,7 +55,7 @@ void	vert_collision(t_cub *cub, t_rdata *v, t_ray *r)
 	{
 		if (is_wall(cub, (r->dir[WEST] ? v->hit[X] - 1 : v->hit[X]), v->hit[Y]))
 		{
-			v->dist = get_distance(cub, v->hit[X], v->hit[Y]);
+			v->dist = ft_distance(cub, v->hit[X], v->hit[Y]);
 			break ;
 		}
 		v->hit[X] += v->step[X];

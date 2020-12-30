@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:51:36 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/29 18:04:54 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/30 16:59:58 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	check_filename(t_cub *cub, t_str fname, t_str ext, t_bool case_sens)
 	if (case_sens)
 		lower_str = ft_strdup(&fname[len - 4]);
 	else
-		lower_str = to_lowercase(&fname[len - 4]);
+		lower_str = ft_lowercase(&fname[len - 4]);
 	if (IS_SUCESS(ft_strncmp(lower_str, ext, 6)))
 	{
 		free(lower_str);

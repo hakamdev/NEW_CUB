@@ -6,11 +6,24 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:52:03 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/30 15:43:43 by ehakam           ###   ########.fr       */
+/*   Updated: 2020/12/30 16:43:10 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubengine.h"
+
+void	init_read_check(t_cub *cub)
+{
+	cub->checker.resolution = false;
+	cub->checker.txt_north = false;
+	cub->checker.txt_south = false;
+	cub->checker.txt_west = false;
+	cub->checker.txt_east = false;
+	cub->checker.txt_sprite = false;
+	cub->checker.clr_ceiling = false;
+	cub->checker.clr_floor = false;
+	cub->checker.is_map = false;
+}
 
 void	init_cam(t_cub *cub)
 {

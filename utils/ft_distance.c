@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_distance.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 17:54:48 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/30 16:12:50 by ehakam           ###   ########.fr       */
+/*   Created: 2020/12/30 17:05:59 by ehakam            #+#    #+#             */
+/*   Updated: 2020/12/30 17:06:30 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubengine.h"
 
-void	ft_free(char *s)
+float	ft_distance(t_cub *cub, float x, float y)
 {
-	if (s)
-	{
-		free(s);
-		s = NULL;
-	}
-}
-
-void	ft_free_2d(t_str *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i] != NULL)
-		ft_free(str[i++]);
-	free(str);
+	return (sqrtf(POW(x - cub->cam.x) + POW(y - cub->cam.y)));
 }

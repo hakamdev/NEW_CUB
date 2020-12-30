@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_lowercase.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 17:54:48 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/30 16:12:50 by ehakam           ###   ########.fr       */
+/*   Created: 2020/12/30 17:00:13 by ehakam            #+#    #+#             */
+/*   Updated: 2020/12/30 17:00:38 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubengine.h"
 
-void	ft_free(char *s)
-{
-	if (s)
-	{
-		free(s);
-		s = NULL;
-	}
-}
-
-void	ft_free_2d(t_str *str)
+t_str	ft_lowercase(t_str str)
 {
 	int		i;
+	t_str	new_str;
 
-	i = 0;
-	while (str[i] != NULL)
-		ft_free(str[i++]);
-	free(str);
+	i = -1;
+	new_str = ft_strdup(str);
+	while (new_str && new_str[++i])
+		if (new_str[i] >= 'A' && new_str[i] <= 'Z')
+			new_str[i] = new_str[i] + 32;
+	return (new_str);
 }

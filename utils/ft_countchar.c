@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_countchar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 17:54:48 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/30 16:12:50 by ehakam           ###   ########.fr       */
+/*   Created: 2020/12/30 16:59:05 by ehakam            #+#    #+#             */
+/*   Updated: 2020/12/30 17:09:31 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cubengine.h"
 
-void	ft_free(char *s)
+int		ft_countchar(const t_str str, char c)
 {
-	if (s)
-	{
-		free(s);
-		s = NULL;
-	}
-}
+	int i;
+	int ccount;
 
-void	ft_free_2d(t_str *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i] != NULL)
-		ft_free(str[i++]);
-	free(str);
+	if (!str)
+		return (0);
+	i = -1;
+	ccount = 0;
+	while (str[++i])
+		if (str[i] == c)
+			ccount++;
+	return (ccount);
 }
