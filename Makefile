@@ -6,7 +6,7 @@
 #    By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/30 19:19:34 by ehakam            #+#    #+#              #
-#    Updated: 2020/12/30 19:30:13 by ehakam           ###   ########.fr        #
+#    Updated: 2020/12/30 19:42:36 by ehakam           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ SRC  =	engine/ft_camera.c \
 # Build Directory for object files.
 BUILD=	build
 # Object Files.
-OBJ  =  $(BUILD)/$(SRC:.c=.o)
+OBJ  =  ./build/$(SRC:.c=.o)
 # Executable Name.
 NAME =	Cub3D
 # Compiler.
@@ -68,8 +68,8 @@ all: $(NAME)
 
 # Linking Rule.
 $(NAME): $(OBJ)
-	@echo ">>> Linking... <<<"
-	@$(CC) $(OBJ) -o $(NAME) -lmlx -framework OpenGL -framework AppKit
+	@#echo ">>> Linking... <<<"
+	@#$(CC) $(OBJ) -o $(NAME) -lmlx -framework OpenGL -framework AppKit
 	@#
 	@#clang $(SRC) -L/usr/X11/lib /usr/X11/lib/libmlx.a -lXext -lX11 -lbsd -lm -o $(NAME) $(DBUG)
 	@#gcc -I minilibx -lmlx -framework OpenGL -framework AppKit $(SRC) -o $(NAME) $(OPT)
@@ -77,7 +77,7 @@ $(NAME): $(OBJ)
 # Compiling Rule.
 $(OBJ) : $(SRC)
 	@echo ">>> Compiling... <<<"
-	@$(CC) -I minilibx $< -o $@ -c $(OPT)
+	@$(CC) -I minilibx $< -o $(OBJ) -c $(OPT)
 
 # Cleaning Object Files.
 clean:
