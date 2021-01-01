@@ -6,7 +6,7 @@
 #    By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/30 19:19:34 by ehakam            #+#    #+#              #
-#    Updated: 2020/12/30 19:42:36 by ehakam           ###   ########.fr        #
+#    Updated: 2021/01/01 15:52:17 by ehakam           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,12 +46,10 @@ SRC  =	engine/ft_camera.c \
 		parser/ft_read_map.c \
 		parser/ft_read_resolution.c \
 		parser/ft_read_texture.c
-# Build Directory for object files.
-BUILD=	build
 # Object Files.
-OBJ  =  ./build/$(SRC:.c=.o)
+OBJ  =  $(SRC:.c=.o)
 # Executable Name.
-NAME =	Cub3D
+NAME =	cub3D
 # Compiler.
 CC   =  gcc
 # Compiler Flags
@@ -60,34 +58,28 @@ FLGS =	-Wall -Wextra -Werror
 DBUG =	-g3 -fsanitize=undefined
 # Compiler Optimization Flag
 OPT  =	-O3
+GREEN=  \033[0;32m
+NC   =  \033[0m
 
 # Main Rule:
 #	- Builds the Final Exutable $(name)
 #	- Use NAME=<exec_name> for a custom Executable Name.
 all: $(NAME)
 
-# Linking Rule.
-$(NAME): $(OBJ)
-	@#echo ">>> Linking... <<<"
-	@#$(CC) $(OBJ) -o $(NAME) -lmlx -framework OpenGL -framework AppKit
-	@#
-	@#clang $(SRC) -L/usr/X11/lib /usr/X11/lib/libmlx.a -lXext -lX11 -lbsd -lm -o $(NAME) $(DBUG)
-	@#gcc -I minilibx -lmlx -framework OpenGL -framework AppKit $(SRC) -o $(NAME) $(OPT)
-
 # Compiling Rule.
-$(OBJ) : $(SRC)
-	@echo ">>> Compiling... <<<"
-	@$(CC) -I minilibx $< -o $(OBJ) -c $(OPT)
+$(NAME): $(SRC)
+	@echo "$(GREEN)Compiling..."
+	@$(CC) -I minilibx -lmlx -framework OpenGL -framework AppKit $(SRC) -o $(NAME) $(OPT)
 
 # Cleaning Object Files.
 clean:
-	@echo ">>> Cleaning... <<<"
+	@echo "$(GREEN)Cleaning..."
 	@rm -rf $(OBJ)
 
 # Cleaning All Built Files.
 fclean: clean
-	@echo ">>> FCleaning... <<<"
+	@echo "$(GREEN)FCleaning..."
 	@rm -rf $(NAME)
 
 # Recompiling Rule.
-re: clean all
+re: fclean all
