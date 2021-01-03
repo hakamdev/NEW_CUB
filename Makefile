@@ -6,7 +6,7 @@
 #    By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/30 19:19:34 by ehakam            #+#    #+#              #
-#    Updated: 2021/01/01 15:52:17 by ehakam           ###   ########.fr        #
+#    Updated: 2021/01/03 19:16:14 by ehakam           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC  =	engine/ft_camera.c \
 		engine/ft_render.c \
 		engine/ft_sprite.c \
 		engine/ft_update.c \
+		engine/ft_save.c \
 		utils/ft_atoi.c \
 		utils/ft_countchar.c \
 		utils/ft_error.c \

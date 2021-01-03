@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:51:50 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/29 18:05:25 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/03 17:52:23 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		main(int ac, t_str *av)
 
 	init_game(&cub, ac, av);
 	if (cub.screenshot)
-		exit(0);
+		save(&cub);
 	mlx_hook(cub.window, EV_KEY_PRESSED, 1L << 0, event_key_pressed, &cub);
 	mlx_hook(cub.window, EV_KEY_RELEASED, 1L << 1, event_key_released, &cub);
 	mlx_hook(cub.window, EV_KEY_EXIT, 1L << 1, event_exit, &cub);
