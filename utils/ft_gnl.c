@@ -6,11 +6,16 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 14:22:33 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/29 18:35:39 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/04 17:01:27 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/get_next_line.h"
+
+static int	is_fd_valid(int fd)
+{
+	return (((fd) >= 0 && (fd) <= (MAXFD)) ? 1 : 0);
+}
 
 static int	ft_find_index(const char *s, char c)
 {
@@ -22,11 +27,11 @@ static int	ft_find_index(const char *s, char c)
 		while ((char)s[i])
 		{
 			if ((char)s[i] == c)
-				EXIT(i);
+				return (i);
 			i++;
 		}
 	}
-	EXIT(ERR);
+	return (ERR);
 }
 
 static int	ft_handle_nl(char **v_line, char **v_temp, char **v_rest)
@@ -38,16 +43,16 @@ static int	ft_handle_nl(char **v_line, char **v_temp, char **v_rest)
 	if (nl_index != ERR)
 	{
 		if (!(v_addup = ft_strsub(v_temp, 0, nl_index)))
-			EXIT(ERR);
+			return (ERR);
 		if (!(*v_line = ft_strjoin(*v_line, v_addup)))
-			EXIT(ERR);
+			return (ERR);
 		if (!(*v_rest = ft_strdup(&v_temp[0][nl_index + 1])))
-			EXIT(ERR);
-		ft_free(v_addup);
-		ft_free(*v_temp);
-		EXIT(1);
+			return (ERR);
+		ft_free(&v_addup);
+		ft_free(v_temp);
+		return (1);
 	}
-	EXIT(INULL);
+	return (INULL);
 }
 
 static int	ft_handle_rest(char **v_line, char **v_temp, char **v_rest)
@@ -58,19 +63,19 @@ static int	ft_handle_rest(char **v_line, char **v_temp, char **v_rest)
 	{
 		if (ft_find_index(*v_rest, NL) > ERR)
 		{
-			ft_free(*v_temp);
+			ft_free(v_temp);
 			*v_temp = *v_rest;
 			if ((ret = ft_handle_nl(v_line, v_temp, v_rest)) != INULL)
-				EXIT(ret);
+				return (ret);
 		}
 		else
 		{
 			if (!(*v_line = ft_strjoin(*v_line, *v_rest)))
-				EXIT(ERR);
-			ft_free(*v_rest);
+				return (ERR);
+			ft_free(v_rest);
 		}
 	}
-	EXIT(INULL);
+	return (INULL);
 }
 
 int			get_next_line(int fd, char **line)
@@ -80,24 +85,24 @@ int			get_next_line(int fd, char **line)
 	int			sread;
 	int			ret;
 
-	if (!line || !FD_VALID(fd) || read(fd, NULL, 0) == ERR
+	if (!line || !is_fd_valid(fd) || read(fd, NULL, 0) == ERR
 	|| !(temp = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
-		EXIT(ERR);
+		return (ERR);
 	sread = 0;
 	if (!(*line = ft_strdup("")))
-		EXIT(ERR);
+		return (ERR);
 	if ((ret = ft_handle_rest(line, &temp, &rest[fd])) != INULL)
-		EXIT(ret);
+		return (ret);
 	while ((sread = read(fd, temp, BUFFER_SIZE)) > INULL)
 	{
 		temp[sread] = CNULL;
 		if (ft_find_index(temp, NL) > ERR)
 			if ((ret = ft_handle_nl(line, &temp, &rest[fd])) != INULL)
-				EXIT(ret);
+				return (ret);
 		if (!(*line = ft_strjoin(*line, temp)))
-			EXIT(ERR);
+			return (ERR);
 	}
 	if (!sread)
-		ft_free(temp);
-	EXIT(EXIT_CODE(sread));
+		ft_free(&temp);
+	return (sread > 0 ? 1 : sread);
 }

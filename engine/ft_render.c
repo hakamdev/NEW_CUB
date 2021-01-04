@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:51:11 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/30 15:42:00 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/04 17:48:00 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	render_sprite(t_cub *cub, int id, int off[2])
 	ax[X] = -1;
 	while (++ax[X] < (int)cub->spr[id].scale)
 	{
-		if (off[X] + ax[X] < 0 || off[X] + ax[X] >= WIN_WIDTH)
+		if (off[X] + ax[X] < 0 || off[X] + ax[X] >= cub->cnvs.width)
 			continue ;
 		if (cub->ray[off[X] + ax[X]].dist <= cub->spr[id].dist)
 			continue ;
@@ -35,7 +35,7 @@ void	render_sprite(t_cub *cub, int id, int off[2])
 		r[X] = (ax[X] * ratio);
 		while (++ax[Y] < (int)cub->spr[id].scale)
 		{
-			if (off[Y] + ax[Y] < 0 || off[Y] + ax[Y] >= WIN_HEIGHT)
+			if (off[Y] + ax[Y] < 0 || off[Y] + ax[Y] >= cub->cnvs.height)
 				continue ;
 			r[Y] = (ax[Y] * ratio);
 			clrindex = (r[Y] * cub->txt[SPR].width) + r[X];

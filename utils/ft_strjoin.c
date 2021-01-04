@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:55:12 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/29 18:38:39 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/04 14:56:15 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (j < len2)
 		*(ss + i++) = *((char *)(s2 + j++));
 	*(ss + i) = '\0';
-	ft_free(s1);
+	ft_free(&s1);
 	return (ss);
 }

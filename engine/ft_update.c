@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:53:02 by ehakam            #+#    #+#             */
-/*   Updated: 2021/01/01 15:48:12 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/04 17:55:34 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ void	update_rays(t_cub *cub)
 {
 	int			i;
 	float		start_ang;
-	const float	ang_step = FOV / WIN_WIDTH;
+	const float	ang_step = cub->fov / cub->cnvs.width;
 	t_ray		*rrr;
 
 	i = -1;
-	start_ang = cub->cam.ang - (FOV / 2);
-	while (++i < WIN_WIDTH)
+	start_ang = cub->cam.ang - (cub->fov / 2);
+	while (++i < cub->cnvs.width)
 	{
 		cub->ray[i].ang = normalize_rad(start_ang);
 		update_ray(cub, &cub->ray[i]);
@@ -55,21 +55,21 @@ void	update_rendering_walls(t_cub *cub)
 	int			i;
 	int			j;
 	t_wdata		strp;
-	const float	pplane_dist = (WIN_WIDTH / 2.0F) / tanf((FOV) / 2);
+	const float	pplane_dist = (cub->cnvs.width / 2.0F) / tanf((cub->fov) / 2);
 	float		corr_dist;
 
 	i = -1;
-	while (++i < WIN_WIDTH)
+	while (++i < cub->cnvs.width)
 	{
 		corr_dist = cub->ray[i].dist * cosf(cub->ray[i].ang - cub->cam.ang);
-		strp.height = TILE_SIZE / corr_dist * pplane_dist;
-		strp.top = ((float)WIN_HEIGHT / 2) - (strp.height / 2);
-		strp.bttm = ((float)WIN_HEIGHT / 2) + (strp.height / 2);
+		strp.height = TL_SIZE / corr_dist * pplane_dist;
+		strp.top = ((float)cub->cnvs.height / 2) - (strp.height / 2);
+		strp.bttm = ((float)cub->cnvs.height / 2) + (strp.height / 2);
 		strp.top = strp.top < 0 ? 0 : strp.top;
-		strp.bttm = strp.bttm > WIN_HEIGHT ? WIN_HEIGHT : strp.bttm;
+		strp.bttm = strp.bttm > cub->cnvs.height ? cub->cnvs.height : strp.bttm;
 		render_ciel_stripe(cub, 0, strp.top, i);
 		render_wall_stripe(cub, &strp, i);
-		render_flor_stripe(cub, strp.bttm, WIN_HEIGHT, i);
+		render_flor_stripe(cub, strp.bttm, cub->cnvs.height, i);
 	}
 }
 
@@ -77,7 +77,7 @@ void	update_rendering_sprites(t_cub *cub)
 {
 	int			i;
 	int			off[2];
-	const float	pplane_dist = (WIN_WIDTH / 2.0F) / tanf((FOV) / 2);
+	const float	pplane_dist = (cub->cnvs.width / 2.0F) / tanf((cub->fov) / 2);
 
 	i = -1;
 	while (++i < cub->sprs_nb)
@@ -86,10 +86,11 @@ void	update_rendering_sprites(t_cub *cub)
 		cub->spr[i].ang = atan2f(cub->spr[i].y - cub->cam.y,
 		cub->spr[i].x - cub->cam.x);
 		cub->spr[i].ang = normalize_spr(cub, cub->spr[i].ang);
-		cub->spr[i].scale = WIN_WIDTH * (float)TILE_SIZE / cub->spr[i].dist;
-		cub->spr[i].offy = (WIN_HEIGHT / 2.0F) - (cub->spr[i].scale / 2);
-		cub->spr[i].offx = ((DEG(cub->spr[i].ang) - DEG(cub->cam.ang))
-		* WIN_WIDTH) / 60 + ((WIN_WIDTH / 2.0F) - (cub->spr[i].scale / 2));
+		cub->spr[i].scale = cub->cnvs.width * (float)TL_SIZE / cub->spr[i].dist;
+		cub->spr[i].offy = (cub->cnvs.height / 2.0F) - (cub->spr[i].scale / 2);
+		cub->spr[i].offx = ((ft_deg(cub->spr[i].ang) - ft_deg(cub->cam.ang))
+		* cub->cnvs.width) / 60
+		+ ((cub->cnvs.width / 2.0F) - (cub->spr[i].scale / 2));
 	}
 	sort_sprites(cub);
 	i = -1;

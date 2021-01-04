@@ -6,7 +6,7 @@
 #    By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/30 19:19:34 by ehakam            #+#    #+#              #
-#    Updated: 2021/01/04 10:53:04 by ehakam           ###   ########.fr        #
+#    Updated: 2021/01/04 17:10:35 by ehakam           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,13 +40,14 @@ SRC  =	engine/ft_camera.c \
 		utils/ft_split.c \
 		utils/ft_strjoin.c \
 		utils/ft_strnchar.c \
-		utils/ft_strnstr.c \
 		utils/ft_utils.c \
+		utils/ft_convert.c \
 		parser/ft_read.c \
 		parser/ft_read_color.c \
 		parser/ft_read_map.c \
 		parser/ft_read_resolution.c \
-		parser/ft_read_texture.c
+		parser/ft_read_texture.c \
+		parser/ft_read_utils.c
 # Object Files.
 OBJ  =  $(SRC:.c=.o)
 # Executable Name.
@@ -69,17 +70,17 @@ all: $(NAME)
 
 # Compiling Rule.
 $(NAME): $(SRC)
-	@echo "$(GREEN)Compiling..."
+	@echo "$(GREEN)Compiling...$(NC)"
 	@$(CC) -I minilibx -lmlx -framework OpenGL -framework AppKit $(SRC) -o $(NAME) $(OPT)
 
 # Cleaning Object Files.
 clean:
-	@echo "$(GREEN)Cleaning..."
+	@echo "$(GREEN)Cleaning...$(NC)"
 	@rm -rf $(OBJ)
 
 # Cleaning All Built Files.
 fclean: clean
-	@echo "$(GREEN)FCleaning..."
+	@echo "$(GREEN)Full Cleaning...$(NC)"
 	@rm -rf $(NAME)
 
 # Recompiling Rule.

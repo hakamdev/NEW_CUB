@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:53:13 by ehakam            #+#    #+#             */
-/*   Updated: 2021/01/04 12:55:10 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/04 17:54:55 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,11 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-# define POW(a)				((a) * (a))
-# define RAD(a)				((float)((a) * M_PI / 180))
-# define DEG(a)				((float)((a) * 180) / M_PI)
-# define IS_ERR(f)			((f) == ERR)
-# define IS_SUCESS(f)		((f) == SUCCESS)
-# define TILE_SIZE			100
-# define FOV				RAD(60.0F)
+# define TL_SIZE			100
 # define CUBTITLE			"Cub3D"
 # define ERR				-1
 # define SUCCESS			0
 # define MAX_READ_CONFIG	9
-# define WIN_WIDTH			cub->cnvs.width
-# define WIN_HEIGHT			cub->cnvs.height
 # define MAX_WIDTH			2256
 # define MAX_HEIGHT			1300
 
@@ -48,15 +40,6 @@
 # define FLOOR 				1
 # define X 					0
 # define Y 					1
-
-# define BITSPERPIXEL		24
-# define PLANES				1
-# define COMPRESSION		0
-# define PIXELBYTESIZE		(WIN_WIDTH * WIN_HEIGHT * BITSPERPIXEL / 8)
-# define FILESIZE			(PIXELBYTESIZE + sizeof(bmp))
-# define XPIXELPERMETER		0X130B
-# define YPIXELPERMETER		0X130B
-# define PIXEL				0XFF
 
 typedef char		*t_str;
 typedef enum		e_bool
@@ -149,6 +132,7 @@ typedef struct		s_cub
 {
 	void			*window;
 	void			*mlx;
+	float			fov;
 	int				rows_nb;
 	int				sprs_nb;
 	t_str			line;
@@ -173,20 +157,23 @@ float				ft_distance(t_cub *cub, float x, float y);
 float				normalize_rad(float angle);
 char				value_at(t_cub *cub, int x, int y);
 void				draw(t_img *canvas, int x, int y, int color);
+t_bool				is_err(int val);
+t_bool				is_succ(int val);
 t_bool				is_wall(t_cub *cub, float x, float y);
 t_bool				is_sprite(t_cub *cub, float x, float y);
 t_bool				is_read_complete(t_cub *cub);
 t_str				ft_lowercase(t_str str);
 t_str				extract_value(t_str line);
 int					ft_countchar(const t_str str, char c);
-
+float				ft_rad(float a);
+float				ft_deg(float a);
 void				ft_perror(t_str msg, int return_code);
 int					ft_clean(t_cub *cub, int return_code);
 int					ft_atoi(const char *str);
 size_t				ft_strlen(const char *s);
 size_t				ft_strlen_2d(t_str *str);
-void				ft_free_2d(t_str *str);
-void				ft_free(char *s);
+void				ft_free_2d(t_str **str);
+void				ft_free(char **s);
 void				ft_putnbr(int n);
 t_bool				ft_strnchar(const char *str, char c);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);

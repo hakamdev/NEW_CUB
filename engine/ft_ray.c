@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:52:22 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/30 17:05:45 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/04 17:54:50 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void	hori_collision(t_cub *cub, t_rdata *h, t_ray *r)
 {
 	h->dist = INT32_MAX;
-	h->inter[Y] = floorf(cub->cam.y / (float)TILE_SIZE) * TILE_SIZE;
-	h->inter[Y] += r->dir[SOUTH] ? TILE_SIZE : 0;
+	h->inter[Y] = floorf(cub->cam.y / (float)TL_SIZE) * TL_SIZE;
+	h->inter[Y] += r->dir[SOUTH] ? TL_SIZE : 0;
 	h->inter[X] = cub->cam.x + (h->inter[Y] - cub->cam.y) / tanf(r->ang);
-	h->step[Y] = TILE_SIZE;
+	h->step[Y] = TL_SIZE;
 	h->step[Y] *= r->dir[NORTH] ? -1 : 1;
-	h->step[X] = TILE_SIZE / tanf(r->ang);
+	h->step[X] = TL_SIZE / tanf(r->ang);
 	h->step[X] *= (r->dir[WEST] && h->step[X] > 0.0F) ? -1 : 1;
 	h->step[X] *= (r->dir[EAST] && h->step[X] < 0.0F) ? -1 : 1;
 	h->hit[X] = h->inter[X];
@@ -41,12 +41,12 @@ void	hori_collision(t_cub *cub, t_rdata *h, t_ray *r)
 void	vert_collision(t_cub *cub, t_rdata *v, t_ray *r)
 {
 	v->dist = INT32_MAX;
-	v->inter[X] = floorf(cub->cam.x / (float)TILE_SIZE) * TILE_SIZE;
-	v->inter[X] += r->dir[EAST] ? TILE_SIZE : 0;
+	v->inter[X] = floorf(cub->cam.x / (float)TL_SIZE) * TL_SIZE;
+	v->inter[X] += r->dir[EAST] ? TL_SIZE : 0;
 	v->inter[Y] = cub->cam.y + (v->inter[X] - cub->cam.x) * tanf(r->ang);
-	v->step[X] = TILE_SIZE;
+	v->step[X] = TL_SIZE;
 	v->step[X] *= r->dir[WEST] ? -1 : 1;
-	v->step[Y] = TILE_SIZE * tanf(r->ang);
+	v->step[Y] = TL_SIZE * tanf(r->ang);
 	v->step[Y] *= (r->dir[NORTH] && v->step[Y] > 0.0F) ? -1 : 1;
 	v->step[Y] *= (r->dir[SOUTH] && v->step[Y] < 0.0F) ? -1 : 1;
 	v->hit[Y] = v->inter[Y];
@@ -100,9 +100,9 @@ void	init_rays(t_cub *cub)
 	int		i;
 
 	i = -1;
-	if (!(cub->ray = malloc(sizeof(t_ray) * WIN_WIDTH)))
+	if (!(cub->ray = malloc(sizeof(t_ray) * cub->cnvs.width)))
 		ft_perror("Error: Failed to allocate memory!", ft_clean(cub, ERR));
-	while (++i < WIN_WIDTH)
+	while (++i < cub->cnvs.width)
 	{
 		cub->ray[i].dist = 0.0F;
 		cub->ray[i].hit[X] = 0.0F;

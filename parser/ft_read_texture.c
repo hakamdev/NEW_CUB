@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:44:29 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/30 16:45:00 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/04 17:38:16 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	read_north_texture(t_cub *cub)
 	check_filename(cub, path, ".xpm", false);
 	cub->txt[NORTH].path = path;
 	cub->checker.txt_north = true;
-	if (IS_ERR(fd = open(path, O_RDONLY)))
+	if ((fd = open(path, O_RDONLY)) == ERR)
 		ft_perror("The path to (NO) texture is not valid!", ft_clean(cub, ERR));
 	close(fd);
 }
@@ -43,7 +43,7 @@ void	read_south_texture(t_cub *cub)
 	check_filename(cub, path, ".xpm", false);
 	cub->txt[SOUTH].path = path;
 	cub->checker.txt_south = true;
-	if (IS_ERR(fd = open(path, O_RDONLY)))
+	if ((fd = open(path, O_RDONLY)) == ERR)
 		ft_perror("The path to (SO) texture is not valid!", ft_clean(cub, ERR));
 	close(fd);
 }
@@ -61,7 +61,7 @@ void	read_west_texture(t_cub *cub)
 	check_filename(cub, path, ".xpm", false);
 	cub->txt[WEST].path = path;
 	cub->checker.txt_west = true;
-	if (IS_ERR(fd = open(path, O_RDONLY)))
+	if ((fd = open(path, O_RDONLY)) == ERR)
 		ft_perror("The path to (WE) texture is not valid!", ft_clean(cub, ERR));
 	close(fd);
 }
@@ -79,7 +79,7 @@ void	read_east_texture(t_cub *cub)
 	check_filename(cub, path, ".xpm", false);
 	cub->txt[EAST].path = path;
 	cub->checker.txt_east = true;
-	if (IS_ERR(fd = open(path, O_RDONLY)))
+	if ((fd = open(path, O_RDONLY)) == ERR)
 		ft_perror("The path to (EA) texture is not valid!", ft_clean(cub, ERR));
 	close(fd);
 }
@@ -97,7 +97,7 @@ void	read_sprite(t_cub *cub)
 	check_filename(cub, path, ".xpm", false);
 	cub->txt[SPR].path = path;
 	cub->checker.txt_sprite = true;
-	if (IS_ERR(fd = open(path, O_RDONLY)))
+	if ((fd = open(path, O_RDONLY)) == ERR)
 		ft_perror("The path to (S) sprite is not valid!", ft_clean(cub, ERR));
 	close(fd);
 }

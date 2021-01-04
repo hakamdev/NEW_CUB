@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:52:56 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/30 15:47:19 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/04 17:54:50 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_bool	is_sprite(t_cub *cub, float x, float y)
 {
-	const int	i = x / TILE_SIZE;
-	const int	j = y / TILE_SIZE;
+	const int	i = x / TL_SIZE;
+	const int	j = y / TL_SIZE;
 
 	return (ft_strnchar("234", value_at(cub, i, j)));
 }
@@ -69,8 +69,8 @@ int		init_sprite(t_cub *cub, int i, int j)
 			cub->spr[index] = tmp_sprs[index];
 		free(tmp_sprs);
 	}
-	tmp_spr.x = (i + 0.5f) * TILE_SIZE;
-	tmp_spr.y = (j + 0.5f) * TILE_SIZE;
+	tmp_spr.x = (i + 0.5f) * TL_SIZE;
+	tmp_spr.y = (j + 0.5f) * TL_SIZE;
 	cub->spr[index] = tmp_spr;
 	return (SUCCESS);
 }
@@ -86,7 +86,7 @@ void	init_sprites(t_cub *cub)
 		i = -1;
 		while (++i < cub->map[j].columns)
 			if (value_at(cub, i, j) == '2')
-				if (IS_ERR(init_sprite(cub, i, j)))
+				if (init_sprite(cub, i, j) == ERR)
 					ft_perror("Error: Failed to allocate memory!",
 						ft_clean(cub, ERR));
 	}

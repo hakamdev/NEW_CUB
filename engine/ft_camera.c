@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:51:27 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/29 18:02:43 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/04 17:54:50 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	set_camera_rotation(t_cub *cub, char direction)
 {
 	if (direction == 'N')
-		cub->cam.ang = RAD(270);
+		cub->cam.ang = ft_rad(270);
 	else if (direction == 'W')
-		cub->cam.ang = RAD(180);
+		cub->cam.ang = ft_rad(180);
 	else if (direction == 'S')
-		cub->cam.ang = RAD(90);
+		cub->cam.ang = ft_rad(90);
 	else if (direction == 'E')
-		cub->cam.ang = RAD(0);
+		cub->cam.ang = ft_rad(0);
 }
 
 t_bool	is_camera(t_cub *cub, int i, int j)
@@ -54,8 +54,8 @@ void	check_camera(t_cub *cub)
 					ft_clean(cub, ERR));
 				cam_exists = true;
 				set_camera_rotation(cub, value_at(cub, i, j));
-				cub->cam.x = (i + 0.5F) * TILE_SIZE;
-				cub->cam.y = (j + 0.5F) * TILE_SIZE;
+				cub->cam.x = (i + 0.5F) * TL_SIZE;
+				cub->cam.y = (j + 0.5F) * TL_SIZE;
 			}
 		}
 	}
