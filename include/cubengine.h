@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:53:13 by ehakam            #+#    #+#             */
-/*   Updated: 2021/01/03 19:19:15 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/04 12:55:10 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,32 +64,6 @@ typedef enum		e_bool
 	true = 1,
 	false = 0
 }					t_bool;
-typedef struct		s_header
-{
-	char			type[2];
-	uint32_t		filesize;
-	uint32_t		reserved;
-	uint32_t		offset;
-}					t_header;
-typedef struct		s_bmpinfo
-{
-	uint32_t		headersize;
-	uint32_t		width;
-	uint32_t		height;
-	uint16_t		planes;
-	uint16_t		bpp;
-	uint32_t		compression;
-	uint32_t		imgsize;
-	uint32_t		xpixelpmeter;
-	uint32_t		ypixelpmeter;
-	uint32_t		numclrpalette;
-	uint32_t		mostimpclr;
-}					t_bmpinfo;
-typedef struct		s_bmp
-{
-	t_header		header;
-	t_bmpinfo		info;
-}					t_bmp;
 typedef struct		s_sprite
 {
 	float			x;
@@ -177,7 +151,6 @@ typedef struct		s_cub
 	void			*mlx;
 	int				rows_nb;
 	int				sprs_nb;
-	int				read_nb;
 	t_str			line;
 	t_str			*parts;
 	t_map			*map;

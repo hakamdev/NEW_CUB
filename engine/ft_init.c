@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:52:03 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/30 16:43:10 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/04 12:55:23 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	init_cub(t_cub *cub)
 	i = -1;
 	cub->cam.x = -1;
 	cub->cam.y = -1;
-	cub->read_nb = 0;
 	cub->sprs_nb = 0;
 	WIN_WIDTH = 0;
 	WIN_HEIGHT = 0;

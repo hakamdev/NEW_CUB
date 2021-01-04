@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 17:34:36 by ehakam            #+#    #+#             */
-/*   Updated: 2021/01/03 19:20:12 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/04 12:35:13 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	save(t_cub *cub)
 	const int	padded_width = round_four(WIN_WIDTH * 3);
 	const int	bitmap_size = WIN_HEIGHT * padded_width * 3;
 	char		*bmp_data;
-	
+
 	event_game_loop(cub);
 	if (!(bmp_data = (char *)malloc(bitmap_size * sizeof(char))))
 		ft_perror("Failed to allocate memory for BMP!", ft_clean(cub, ERR));

@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:48:55 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/30 16:58:42 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/04 11:06:31 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	read_ceiling_color(t_cub *cub)
 		ft_perror("Invalid (Blue) Value for (C)!", ft_clean(cub, ERR));
 	cub->color[CIEL] = clr;
 	cub->checker.clr_ceiling = true;
+	ft_free(color_values);
 	ft_free_2d(parts);
 }
 
@@ -57,5 +58,6 @@ void	read_floor_color(t_cub *cub)
 		ft_perror("Invalid (Blue) Value for (F)!", ft_clean(cub, ERR));
 	cub->color[FLOOR] = clr;
 	cub->checker.clr_floor = true;
+	ft_free(color_values);
 	ft_free_2d(parts);
 }
