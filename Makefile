@@ -6,7 +6,7 @@
 #    By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/30 19:19:34 by ehakam            #+#    #+#              #
-#    Updated: 2021/01/04 17:10:35 by ehakam           ###   ########.fr        #
+#    Updated: 2021/01/04 17:57:24 by ehakam           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,8 +48,6 @@ SRC  =	engine/ft_camera.c \
 		parser/ft_read_resolution.c \
 		parser/ft_read_texture.c \
 		parser/ft_read_utils.c
-# Object Files.
-OBJ  =  $(SRC:.c=.o)
 # Executable Name.
 NAME =	cub3D
 # Compiler.
