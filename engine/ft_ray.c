@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:52:22 by ehakam            #+#    #+#             */
-/*   Updated: 2021/01/04 17:54:50 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/06 14:52:16 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	init_rays(t_cub *cub)
 
 	i = -1;
 	if (!(cub->ray = malloc(sizeof(t_ray) * cub->cnvs.width)))
-		ft_perror("Error: Failed to allocate memory!", ft_clean(cub, ERR));
+		ft_perror("Failed to allocate memory!", ft_clean(cub, ERR));
 	while (++i < cub->cnvs.width)
 	{
 		cub->ray[i].dist = 0.0F;

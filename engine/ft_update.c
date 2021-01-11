@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:53:02 by ehakam            #+#    #+#             */
-/*   Updated: 2021/01/04 17:55:34 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/11 14:59:28 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	update_rays(t_cub *cub)
 void	update_rendering_walls(t_cub *cub)
 {
 	int			i;
-	int			j;
 	t_wdata		strp;
 	const float	pplane_dist = (cub->cnvs.width / 2.0F) / tanf((cub->fov) / 2);
 	float		corr_dist;
@@ -77,7 +76,6 @@ void	update_rendering_sprites(t_cub *cub)
 {
 	int			i;
 	int			off[2];
-	const float	pplane_dist = (cub->cnvs.width / 2.0F) / tanf((cub->fov) / 2);
 
 	i = -1;
 	while (++i < cub->sprs_nb)

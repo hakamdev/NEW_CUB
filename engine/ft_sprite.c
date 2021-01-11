@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:52:56 by ehakam            #+#    #+#             */
-/*   Updated: 2021/01/04 17:54:50 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/06 14:52:27 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	init_sprites(t_cub *cub)
 		while (++i < cub->map[j].columns)
 			if (value_at(cub, i, j) == '2')
 				if (init_sprite(cub, i, j) == ERR)
-					ft_perror("Error: Failed to allocate memory!",
+					ft_perror("Failed to allocate memory!",
 						ft_clean(cub, ERR));
 	}
 }

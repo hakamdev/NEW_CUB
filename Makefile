@@ -6,7 +6,7 @@
 #    By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/30 19:19:34 by ehakam            #+#    #+#              #
-#    Updated: 2021/01/04 17:57:24 by ehakam           ###   ########.fr        #
+#    Updated: 2021/01/11 14:58:31 by ehakam           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC  =	engine/ft_camera.c \
 		parser/ft_read_utils.c
 # Executable Name.
 NAME =	cub3D
+SS   =  ss.bmp
 # Compiler.
 CC   =  gcc
 # Compiler Flags
@@ -69,7 +70,7 @@ all: $(NAME)
 # Compiling Rule.
 $(NAME): $(SRC)
 	@echo "$(GREEN)Compiling...$(NC)"
-	@$(CC) -I minilibx -lmlx -framework OpenGL -framework AppKit $(SRC) -o $(NAME) $(OPT)
+	@$(CC) -I minilibx -lmlx -framework OpenGL -framework AppKit $(FLGS) $(SRC) -o $(NAME) $(OPT)
 
 # Cleaning Object Files.
 clean:
@@ -79,7 +80,7 @@ clean:
 # Cleaning All Built Files.
 fclean: clean
 	@echo "$(GREEN)Full Cleaning...$(NC)"
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(SS)
 
 # Recompiling Rule.
 re: fclean all

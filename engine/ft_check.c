@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:51:36 by ehakam            #+#    #+#             */
-/*   Updated: 2021/01/04 17:33:46 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/06 14:39:19 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	check_map(t_cub *cub)
 	int		j;
 
 	j = -1;
+	if (cub->rows_nb <= 0)
+		ft_perror("Map is missing!", ft_clean(cub, ERR));
 	while (++j < cub->rows_nb)
 	{
 		i = -1;

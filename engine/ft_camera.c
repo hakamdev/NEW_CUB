@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:51:27 by ehakam            #+#    #+#             */
-/*   Updated: 2021/01/04 17:54:50 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/06 14:51:11 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ void	check_camera(t_cub *cub)
 		}
 	}
 	if (!cam_exists)
-		ft_perror("Error: Player doesn't exist in Map!", ft_clean(cub, ERR));
+		ft_perror("Player doesn't exist in Map!", ft_clean(cub, ERR));
 }

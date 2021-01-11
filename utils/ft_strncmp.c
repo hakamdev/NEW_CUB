@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:55:34 by ehakam            #+#    #+#             */
-/*   Updated: 2020/12/29 18:37:22 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/11 14:59:47 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int		i;
+	size_t		i;
 
 	i = 0;
 	if (!s1 || !s2)
