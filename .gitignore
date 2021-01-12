@@ -1,6 +1,7 @@
-Cub3D
+cub3D
 .vscode/
-Cub3D.dSYM/
+cub3D.dSYM/
 .DS_Store
 */.DS_Store
 *.o
+*.bmp
