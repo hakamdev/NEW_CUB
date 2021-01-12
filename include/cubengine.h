@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:53:13 by ehakam            #+#    #+#             */
-/*   Updated: 2021/01/04 17:54:55 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/12 11:08:02 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-# define TL_SIZE			100
+# define TL_SIZE			64
 # define CUBTITLE			"Cub3D"
 # define ERR				-1
 # define SUCCESS			0
 # define MAX_READ_CONFIG	9
-# define MAX_WIDTH			2256
-# define MAX_HEIGHT			1300
+# define MAX_WIDTH			2560
+# define MAX_HEIGHT			1440
 
 # define EV_KEY_PRESSED		2
 # define EV_KEY_RELEASED	3

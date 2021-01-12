@@ -6,7 +6,7 @@
 #    By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/30 19:19:34 by ehakam            #+#    #+#              #
-#    Updated: 2021/01/11 14:58:31 by ehakam           ###   ########.fr        #
+#    Updated: 2021/01/12 11:14:55 by ehakam           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,8 @@ SRC  =	engine/ft_camera.c \
 		parser/ft_read_resolution.c \
 		parser/ft_read_texture.c \
 		parser/ft_read_utils.c
+HDR  =	include/cubengine.h \
+		include/get_next_line.h
 # Executable Name.
 NAME =	cub3D
 SS   =  ss.bmp
@@ -75,7 +77,6 @@ $(NAME): $(SRC)
 # Cleaning Object Files.
 clean:
 	@echo "$(GREEN)Cleaning...$(NC)"
-	@rm -rf $(OBJ)
 
 # Cleaning All Built Files.
 fclean: clean
@@ -84,3 +85,7 @@ fclean: clean
 
 # Recompiling Rule.
 re: fclean all
+
+norm:
+	@echo "$(GREEN)Checking Norm...$(NC)"
+	@norminette -R CheckForbiddenSourceHeader $(SRC) $(HDR)

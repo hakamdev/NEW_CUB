@@ -6,7 +6,7 @@
 /*   By: ehakam <ehakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/28 17:51:44 by ehakam            #+#    #+#             */
-/*   Updated: 2021/01/04 17:23:22 by ehakam           ###   ########.fr       */
+/*   Updated: 2021/01/12 11:05:14 by ehakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ int		event_key_released(int key, t_cub *cub)
 	if (key == 2 || key == 100)
 	{
 		cub->cam.mov_dir = 0;
+		cub->cam.side_ang = ft_rad(0.0F);
+	}
+	if (key == 259)
+	{
+		cub->cam.mov_dir = 0;
+		cub->cam.rot_dir = 0;
 		cub->cam.side_ang = ft_rad(0.0F);
 	}
 	return (SUCCESS);
